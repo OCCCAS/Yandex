@@ -1,0 +1,10 @@
+click==8.0.3
+Flask==2.0.2
+Flask-HTTPAuth==4.4.0
+itsdangerous==2.0.1
+Jinja2==3.0.2
+MarkupSafe==2.0.1
+PyQt5==5.15.5
+PyQt5-Qt5==5.15.2
+PyQt5-sip==12.9.0
+Werkzeug==2.0.2
