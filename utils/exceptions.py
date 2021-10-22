@@ -1,0 +1,2 @@
+class InvalidDataStruct(Exception):
+    pass
