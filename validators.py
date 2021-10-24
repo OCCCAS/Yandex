@@ -1,4 +1,5 @@
 import datetime
+import re
 from exceptions import PasswordError
 
 
@@ -83,3 +84,18 @@ class PasswordValidator(BaseValidator):
             return False
 
         return True
+
+
+class EmailValidator(BaseValidator):
+    def __init__(self, email):
+        super().__init__(email)
+        self.email = email
+
+    def validate(self) -> bool:
+        email_regex = r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'
+        if re.search(email_regex, self.email):
+            return True
+        
+        return False
+
+

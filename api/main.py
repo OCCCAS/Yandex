@@ -3,7 +3,6 @@ from flask import Flask, jsonify, make_response, request, abort
 from flask_httpauth import HTTPBasicAuth
 from utils.utils import *
 
-
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
@@ -25,15 +24,15 @@ def create_account():
     # If json is empty
     if not request.json:
         return make_response(jsonify({'error': 'Json is empty'}), 400)
-    # Checking fields for emptiness 
-    elif not check_register_json(request.json):
-        return make_response(jsonify({'error': 'Some fields is empty'}), 400)
-    
+
     web_status_code: WebStatusCode = register(request.json.values()).get_formatted()
     return make_response(*web_status_code)
 
 
+@app.route('/api/login', methods=['POST'])
+def login():
+    pass
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-

@@ -76,12 +76,12 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Псевдоним:</string>
+         <string>Почта:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="edit_nick"/>
+       <widget class="QLineEdit" name="edit_email"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_6">

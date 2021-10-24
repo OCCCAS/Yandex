@@ -1,5 +1,6 @@
 # API functions
 - [Create account](#create_account)
+- [Login](#login)
 
 ## <a name='create_account'></a> Create account
 ```python

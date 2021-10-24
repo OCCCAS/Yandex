@@ -2,7 +2,7 @@ from utils.database_handler import *
 from config import DATABASE_FILENAME
 from utils.database_handler import DatabaseHandler
 
-from utils.exceptions import InvalidDataStruct
+from exceptions import InvalidDataStruct
 from flask import jsonify
 
 database_handler = DatabaseHandler(DATABASE_FILENAME)
@@ -21,8 +21,10 @@ def check_register_json(json):
     fields = {
         'name': str,
         'surname': str,
+        'email': str,
         'birthday': int,
         'gender': str,
+        'post': int,
         'password': str,
     }
 
@@ -30,7 +32,7 @@ def check_register_json(json):
     for field_name, field_type in fields.items():
         # If field in json
         if field_name in json:
-            # If field type is good
+            # If field type is not good
             if not isinstance(json[field_name], field_type):
                 return False
         else:
@@ -46,15 +48,31 @@ def web_error(message):
 def register(data):
     try:
         # If data fields count not valid 
-        database_handler.register_user(data)
+        state = database_handler.register_user(data)
 
-        # If good return 200 status code and user data
+        if not state:
+            raise UserWasRegistered('User was created')
+
+        # If registration is seccsesfully
+        name, surname = list(data)[:2]
         return WebStatusCode({
             'user': {
-                'name': data.get('name'),
-                'surname': data.get('surname')
+                'name': name,
+                'surname': surname
             }
         }, 200)
     except InvalidDataStruct:
         # Returning 400 error code
         return WebStatusCode(web_error('Invalid data lenght'), 400)
+    except UserWasRegistered:
+        # Returning 400 error code
+        return WebStatusCode(web_error('User was registered'), 400)
+
+
+
+def login(username: str, password: str):
+    try:
+        pass
+    except Exception:
+        pass
+
