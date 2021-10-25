@@ -16,7 +16,7 @@ class Ui_Form(object):
         Form.setObjectName("Form")
         Form.resize(729, 559)
         Form.setAutoFillBackground(True)
-        Form.setStyleSheet("backgound: white;")
+        Form.setStyleSheet("background-color: white;")
         self.btn_create_account = QtWidgets.QPushButton(Form)
         self.btn_create_account.setGeometry(QtCore.QRect(250, 490, 231, 47))
         font = QtGui.QFont()
@@ -95,11 +95,6 @@ class Ui_Form(object):
 "border-color: #009dae;\n"
 "border-width: 2px;\n"
 "border-style: outset;\n"
-"QComboBox QAbstractItemView {\n"
-"  color: rgb(85, 170, 255);    \n"
-"  background-color: #373e4e;\n"
-"  padding: 10px;\n"
-"  selection-background-color: rgb(39, 44, 54);\n"
 "}")
         self.dtchoice_birthday.setCurrentSection(QtWidgets.QDateTimeEdit.DaySection)
         self.dtchoice_birthday.setCalendarPopup(False)
