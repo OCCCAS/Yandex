@@ -30,7 +30,7 @@ class LoginAccountApp(QWidget, Ui_Form):
                 return True
 
         return False
-    
+
     def show_info(self, text):
         self.lbl_info.setText(text)
         self.lbl_info.adjustSize()
@@ -51,7 +51,7 @@ class LoginAccountApp(QWidget, Ui_Form):
                 self.show_info('Не правильно введен логин или пароль')
             else:
                 self.show_info('')
-                print(res)
+                save_current_user(data)
 
 
 def except_hook(cls, exception, traceback):

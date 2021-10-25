@@ -17,7 +17,7 @@ class DatabaseHandler:
             data[5] = post_id
 
             self.cursor.execute(
-                "INSERT INTO users (name, surname, email, birthday, gender, post, password) VALUES (?, ?, ?, ?, ?, ?, ?)", data)
+                "INSERT INTO users (name, surname, email, birthday, gender, post, password, portfolio_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", data)
             self.conn.commit()
             return True
         except sqlite3.IntegrityError:
@@ -33,6 +33,28 @@ class DatabaseHandler:
         except Exception as e:
             print(e)
             return False
+
+    def get_user_data(self, email, column):
+        try:
+            res = self.cursor.execute(f'SELECT {column} FROM users WHERE email=?', (email, )).fetchone()
+            return res[0]
+        except Exception as e:
+            print(e)
+            return False
+
+    def execute(self, command, params, commit=False):
+        try:
+            data =  self.cursor.execute(command, params).fetchall()
+
+            if commit:
+                self.conn.commit()
+            else:
+                return data
+
+        except Exception as e:
+            print(e)
+            return False
+
 
 
     def __del__(self):

@@ -102,6 +102,7 @@ class CreateAccountApp(QWidget, Ui_Form):
         # First symbol from gender
         data['gender'] = self.cmb_gender.currentText()[0]
         data['password'] = self.get_password()
+        data['portfolio_count'] = 0
 
         return data
 
@@ -117,7 +118,7 @@ class CreateAccountApp(QWidget, Ui_Form):
             res = create_account(data)
 
             # If user was created
-            if not res:
+            if res:
                 self.show_error('Пользователь с такой почтой уже создан')
 
         except FormFillingError as e:
