@@ -1,17 +1,13 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from py_ui.main import Ui_MainWindow
+from PyQt5.QtWidgets import QApplication, QWidget
+from ui import Ui_Form
 
 
-class App(QMainWindow, Ui_MainWindow):
+class App(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.fill_table()
-
-    def fill_table(self):
-        pass
 
 
 def except_hook(cls, exception, traceback):

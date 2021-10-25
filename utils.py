@@ -1,6 +1,6 @@
 from hashlib import sha256
 
 
-def hash_password(password):
-    return sha256(password.encode('utf-8')).hexdigest()
+def hash_data(data):
+    return sha256(data.encode('utf-8')).hexdigest()
 

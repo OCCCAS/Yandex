@@ -1,4 +1,4 @@
-<h1 align="center">ТЗ для приложния</h1>
+h1 align="center">ТЗ для приложния</h1>
 
 ## Описание
 <p>
@@ -11,6 +11,11 @@
 Цель приложения облегчить воспитателям связь с детьми и их родителями.<br>
 </p>
 
+## При запуске программы надо будет зарегестрироваться или войти в уже созданый аккаунт
+![Screenshot from 2021-10-25 18-29-33](https://user-images.githubusercontent.com/72919856/138726244-43a2b055-9b4d-47e0-8e4d-cf86975f1ac1.png)
+<br>
+![Screenshot from 2021-10-25 18-31-25](https://user-images.githubusercontent.com/72919856/138726298-28e9372a-b9fa-40c4-aae3-800fa914dfb2.png)
+=======
 ## Вот так выглядит интерфейс приложения
 ### Регестрация
 ![Screenshot from 2021-10-25 18-30-01](https://user-images.githubusercontent.com/72919856/138746612-a3eb62d3-3a51-413a-8081-9e7a5387f1d9.png)<br>
@@ -18,6 +23,8 @@
 ![Screenshot from 2021-10-25 18-31-25](https://user-images.githubusercontent.com/72919856/138746655-81c965c7-2a1a-4669-a31c-7349dde74e83.png)<br>
 ### Профиль и портфолио
 ![Screenshot from 2021-10-25 21-00-30](https://user-images.githubusercontent.com/72919856/138746660-1265960e-4679-45a7-9e09-07cb35d390bb.png)<br>
+=======
+
 
 ## Функционал
 * Воспитатели могут отправлять домашнее задание
