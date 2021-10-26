@@ -12,12 +12,8 @@ class DatabaseHandler:
 
     def register_user(self, data):
         try:
-            post_name = data[5]
-            post_id = self.cursor.execute('SELECT id FROM posts WHERE name=?', (post_name,)).fetchone()[0]
-            data[5] = post_id
-
             self.cursor.execute(
-                "INSERT INTO users (name, surname, email, birthday, gender, post, password, portfolio_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", data)
+                "INSERT INTO users (name, surname, email, birthday, gender, password, portfolio_count) VALUES (?, ?, ?, ?, ?, ?, ?)", data)
             self.conn.commit()
             return True
         except sqlite3.IntegrityError:
@@ -50,10 +46,9 @@ class DatabaseHandler:
                 self.conn.commit()
             else:
                 return data
-
         except Exception as e:
             print(e)
-            return False
+            return ()
 
 
 
