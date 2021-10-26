@@ -10,6 +10,7 @@ from py_ui.profile import Ui_Form
 from service import *
 from config import *
 from add_to_portfolio import AddToPortfolio
+from create_account import CreateAccountApp
 
 
 class Profile(QWidget, Ui_Form):
@@ -94,7 +95,15 @@ def except_hook(cls, exception, traceback):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app_ = Profile()
-    app_.show()
+    crt_acc = False
+
+    if not is_user_loggined():
+        create_account_app_ = CreateAccountApp()
+        crt_acc = create_account_app_.exec_()
+
+    if not crt_acc:
+        app_ = Profile()
+        app_.show()
+
     sys.excepthook = except_hook
     sys.exit(app.exec())

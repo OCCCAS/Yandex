@@ -9,45 +9,78 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import widgets
 
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(312, 228)
-        self.formLayoutWidget = QtWidgets.QWidget(Form)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(20, 90, 271, 61))
-        self.formLayoutWidget.setObjectName("formLayoutWidget")
-        self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
-        self.formLayout.setObjectName("formLayout")
-        self.label_2 = QtWidgets.QLabel(self.formLayoutWidget)
-        self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.edit_email = QtWidgets.QLineEdit(self.formLayoutWidget)
+        Form.resize(498, 380)
+        Form.setStyleSheet("background-color: white;")
+        self.label_3 = QtWidgets.QLabel(Form)
+        self.label_3.setGeometry(QtCore.QRect(190, 30, 123, 46))
+        font = QtGui.QFont()
+        font.setPointSize(30)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: #333c56;")
+        self.label_3.setObjectName("label_3")
+        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(120, 130, 281, 191))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.edit_email = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.edit_email.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;")
         self.edit_email.setObjectName("edit_email")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.edit_email)
-        self.label = QtWidgets.QLabel(self.formLayoutWidget)
-        self.label.setObjectName("label")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label)
-        self.edit_password = QtWidgets.QLineEdit(self.formLayoutWidget)
+        self.verticalLayout.addWidget(self.edit_email)
+        self.edit_password = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.edit_password.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;")
         self.edit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.edit_password.setObjectName("edit_password")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.edit_password)
-        self.btn_login = QtWidgets.QPushButton(Form)
-        self.btn_login.setGeometry(QtCore.QRect(110, 190, 89, 25))
-        self.btn_login.setObjectName("btn_login")
-        self.label_3 = QtWidgets.QLabel(Form)
-        self.label_3.setGeometry(QtCore.QRect(120, 20, 79, 32))
-        font = QtGui.QFont()
-        font.setPointSize(20)
-        self.label_3.setFont(font)
-        self.label_3.setObjectName("label_3")
-        self.lbl_info = QtWidgets.QLabel(Form)
-        self.lbl_info.setGeometry(QtCore.QRect(20, 160, 67, 17))
+        self.verticalLayout.addWidget(self.edit_password)
+        self.lbl_info = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.lbl_info.setStyleSheet("color: red;")
         self.lbl_info.setText("")
         self.lbl_info.setObjectName("lbl_info")
+        self.verticalLayout.addWidget(self.lbl_info)
+        self.btn_login = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_login.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_login.setObjectName("btn_login")
+        self.verticalLayout.addWidget(self.btn_login)
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(120, 100, 119, 20))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setStyleSheet("color: #babac1;")
+        self.label.setObjectName("label")
+        self.lbl_create_account = widgets.ClickableLabel(Form)
+        self.lbl_create_account.setGeometry(QtCore.QRect(260, 100, 132, 20))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lbl_create_account.setFont(font)
+        self.lbl_create_account.setStyleSheet("color: #4654f9;")
+        self.lbl_create_account.setObjectName("lbl_create_account")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -55,7 +88,9 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label_2.setText(_translate("Form", "Почта:"))
-        self.label.setText(_translate("Form", "Пароль:"))
-        self.btn_login.setText(_translate("Form", "Войти"))
         self.label_3.setText(_translate("Form", "Логин"))
+        self.edit_email.setPlaceholderText(_translate("Form", "Почта"))
+        self.edit_password.setPlaceholderText(_translate("Form", "Пароль"))
+        self.btn_login.setText(_translate("Form", "Войти"))
+        self.label.setText(_translate("Form", "Нет аккаунта?"))
+        self.lbl_create_account.setText(_translate("Form", "Создай аккаунт"))

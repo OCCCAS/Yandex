@@ -1,8 +1,8 @@
 import sys
 
 from PyQt5.QtWidgets import QApplication, QDialog
-from py_ui.create_account import Ui_Form
-from login_account import LoginAccountApp
+import py_ui.create_account
+import py_ui.login_account
 
 from utils import *
 from exceptions import *
@@ -10,7 +10,60 @@ from validators import *
 from service import *
 
 
-class CreateAccountApp(QDialog, Ui_Form):
+class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        self.btn_login.clicked.connect(self.__login)
+        self.lbl_create_account.clicked.connect(self.__create_account)
+
+    def get_email(self):
+        email = self.edit_email.text()
+        return hash_data(email)
+
+    def get_password(self):
+        password = self.edit_password.text()
+        return hash_data(password)
+
+    def is_fields_empty(self):
+        fields = [self.edit_email, self.edit_password]
+
+        for field in fields:
+            if not field.text():
+                return True
+
+        return False
+
+    def show_info(self, text):
+        self.lbl_info.setText(text)
+        self.lbl_info.adjustSize()
+
+    def __login(self):
+        if self.is_fields_empty():
+            self.show_info('Не все поля заполнены')
+        else:
+            self.show_info('')
+
+            data = {
+                'email': self.get_email(),
+                'password': self.get_password()
+            }
+            res = login(data)
+
+            if not res:
+                self.show_info('Не правильно введен логин или пароль')
+            else:
+                save_current_user(data)
+                self.close()
+
+    def __create_account(self):
+        create_account_app = CreateAccountApp()
+        self.close()
+        create_account_app.exec_()
+
+
+class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -54,7 +107,7 @@ class CreateAccountApp(QDialog, Ui_Form):
             # If digits in surname
             if letter.isdigit():
                 raise FormFillingError('В фамилии не должно быть цифр!')
-        
+
         return surname
 
     def get_email(self):
@@ -64,7 +117,6 @@ class CreateAccountApp(QDialog, Ui_Form):
             raise FormFillingError('Почтовый аддрес не корректный!')
 
         return hash_data(email)
-
 
     def check_empty_fields(self):
         fields = [
@@ -81,16 +133,14 @@ class CreateAccountApp(QDialog, Ui_Form):
         self.lbl_error.setText(str(text))
 
     def get_grouped_data(self):
-        data = {}
-
-        data['name'] = self.get_name()
-        data['surname'] = self.get_surname()
-        data['email'] = self.get_email()
-        data['birthday'] = self.get_birthday()
-        # First symbol from gender
-        data['gender'] = self.cmb_gender.currentText()[0]
-        data['password'] = self.get_password()
-        data['portfolio_count'] = 0
+        data = {
+            'name': self.get_name(),
+            'surname': self.get_surname(),
+            'email': self.get_email(),
+            'birthday': self.get_birthday(),
+            'gender': self.cmb_gender.currentText()[0],  # First gender symbol
+            'password': self.get_password(), 'portfolio_count': 0
+        }
 
         return data
 
@@ -109,6 +159,7 @@ class CreateAccountApp(QDialog, Ui_Form):
             if res:
                 self.show_error('Пользователь с такой почтой уже создан')
 
+            save_current_user({'email': data['email']})
         except FormFillingError as e:
             self.show_error(e)
 
@@ -116,15 +167,3 @@ class CreateAccountApp(QDialog, Ui_Form):
         login_app = LoginAccountApp()
         self.close()
         login_app.exec_()
-
-
-def except_hook(cls, exception, traceback):
-    sys.__excepthook__(cls, exception, traceback)
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    app_ = CreateAccountApp()
-    app_.show()
-    sys.excepthook = except_hook
-    sys.exit(app.exec())

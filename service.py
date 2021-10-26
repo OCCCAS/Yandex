@@ -102,3 +102,15 @@ def get_user_portfolio():
     
     return data
 
+
+def is_user_loggined():
+    with open('user.json', 'r') as file:
+        data = json.load(file)
+        file.close()
+
+    if 'user' in data:
+        if 'email' in data['user']:
+            return True
+
+    return False
+
