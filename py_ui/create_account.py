@@ -9,174 +9,178 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import widgets
 
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(729, 559)
-        Form.setAutoFillBackground(True)
-        Form.setStyleSheet("background-color: white;")
-        self.btn_create_account = QtWidgets.QPushButton(Form)
-        self.btn_create_account.setGeometry(QtCore.QRect(250, 490, 231, 47))
+        Form.resize(887, 599)
         font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.btn_create_account.setFont(font)
-        self.btn_create_account.setStyleSheet("padding: 10px 10px;\n"
-"background-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-radius: 15px;\n"
-"color: white;\n"
-"")
-        self.btn_create_account.setObjectName("btn_create_account")
-        self.lbl_error = QtWidgets.QLabel(Form)
-        self.lbl_error.setGeometry(QtCore.QRect(40, 440, 421, 21))
-        self.lbl_error.setStyleSheet("color: red;")
-        self.lbl_error.setText("")
-        self.lbl_error.setObjectName("lbl_error")
-        self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(170, 30, 419, 425))
-        self.widget.setObjectName("widget")
-        self.formLayout = QtWidgets.QFormLayout(self.widget)
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
-        self.formLayout.setObjectName("formLayout")
-        self.edit_name = QtWidgets.QLineEdit(self.widget)
+        font.setBold(False)
+        font.setWeight(50)
+        Form.setFont(font)
+        Form.setAutoFillBackground(False)
+        Form.setStyleSheet("background-color: white;")
+        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(520, 120, 341, 451))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.edit_name = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_name.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
 "")
         self.edit_name.setObjectName("edit_name")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.edit_name)
-        self.label_5 = QtWidgets.QLabel(self.widget)
-        self.label_5.setObjectName("label_5")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_5)
-        self.edit_surname = QtWidgets.QLineEdit(self.widget)
+        self.verticalLayout.addWidget(self.edit_name)
+        self.edit_surname = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_surname.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
 "")
         self.edit_surname.setObjectName("edit_surname")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.edit_surname)
-        self.label_4 = QtWidgets.QLabel(self.widget)
-        self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_4)
-        self.edit_email = QtWidgets.QLineEdit(self.widget)
+        self.verticalLayout.addWidget(self.edit_surname)
+        self.edit_email = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_email.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
 "")
         self.edit_email.setObjectName("edit_email")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.edit_email)
-        self.label_6 = QtWidgets.QLabel(self.widget)
-        self.label_6.setObjectName("label_6")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_6)
-        self.dtchoice_birthday = QtWidgets.QDateEdit(self.widget)
-        self.dtchoice_birthday.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
+        self.verticalLayout.addWidget(self.edit_email)
+        self.cmb_gender = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.cmb_gender.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
-"}")
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.cmb_gender.setLocale(QtCore.QLocale(QtCore.QLocale.Russian, QtCore.QLocale.Russia))
+        self.cmb_gender.setEditable(False)
+        self.cmb_gender.setInsertPolicy(QtWidgets.QComboBox.InsertAtTop)
+        self.cmb_gender.setIconSize(QtCore.QSize(16, 16))
+        self.cmb_gender.setDuplicatesEnabled(False)
+        self.cmb_gender.setFrame(True)
+        self.cmb_gender.setObjectName("cmb_gender")
+        self.cmb_gender.addItem("")
+        self.cmb_gender.addItem("")
+        self.verticalLayout.addWidget(self.cmb_gender)
+        self.dtchoice_birthday = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setKerning(False)
+        self.dtchoice_birthday.setFont(font)
+        self.dtchoice_birthday.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.dtchoice_birthday.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.dtchoice_birthday.setCurrentSection(QtWidgets.QDateTimeEdit.DaySection)
         self.dtchoice_birthday.setCalendarPopup(False)
         self.dtchoice_birthday.setCurrentSectionIndex(0)
         self.dtchoice_birthday.setTimeSpec(QtCore.Qt.LocalTime)
         self.dtchoice_birthday.setObjectName("dtchoice_birthday")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.dtchoice_birthday)
-        self.label_7 = QtWidgets.QLabel(self.widget)
-        self.label_7.setObjectName("label_7")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.label_7)
-        self.cmb_gender = QtWidgets.QComboBox(self.widget)
-        self.cmb_gender.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
-"border-radius: 5px;\n"
-"color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
-"")
-        self.cmb_gender.setLocale(QtCore.QLocale(QtCore.QLocale.Russian, QtCore.QLocale.Russia))
-        self.cmb_gender.setCurrentText("")
-        self.cmb_gender.setObjectName("cmb_gender")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.cmb_gender)
-        self.label_8 = QtWidgets.QLabel(self.widget)
-        self.label_8.setObjectName("label_8")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_8)
-        self.cmb_post = QtWidgets.QComboBox(self.widget)
-        self.cmb_post.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
-"border-radius: 5px;\n"
-"color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
-"")
-        self.cmb_post.setObjectName("cmb_post")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.cmb_post)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.formLayout.setItem(7, QtWidgets.QFormLayout.LabelRole, spacerItem)
-        self.textBrowser = QtWidgets.QTextBrowser(self.widget)
-        self.textBrowser.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
-        self.textBrowser.setObjectName("textBrowser")
-        self.formLayout.setWidget(8, QtWidgets.QFormLayout.SpanningRole, self.textBrowser)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.formLayout.setItem(9, QtWidgets.QFormLayout.FieldRole, spacerItem1)
-        self.label_3 = QtWidgets.QLabel(self.widget)
-        self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(10, QtWidgets.QFormLayout.LabelRole, self.label_3)
-        self.edit_password = QtWidgets.QLineEdit(self.widget)
+        self.verticalLayout.addWidget(self.dtchoice_birthday)
+        self.edit_password = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_password.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
 "")
         self.edit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.edit_password.setObjectName("edit_password")
-        self.formLayout.setWidget(10, QtWidgets.QFormLayout.FieldRole, self.edit_password)
-        self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(11, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.edit_password_again = QtWidgets.QLineEdit(self.widget)
+        self.verticalLayout.addWidget(self.edit_password)
+        self.edit_password_again = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_password_again.setStyleSheet("background-color: #ffffff;\n"
-"border-width: 2px;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
-"padding: 5px 5px;\n"
-"border-color: #009dae;\n"
-"border-width: 2px;\n"
-"border-style: outset;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
 "")
         self.edit_password_again.setEchoMode(QtWidgets.QLineEdit.Password)
         self.edit_password_again.setObjectName("edit_password_again")
-        self.formLayout.setWidget(11, QtWidgets.QFormLayout.FieldRole, self.edit_password_again)
-        self.label = QtWidgets.QLabel(self.widget)
+        self.verticalLayout.addWidget(self.edit_password_again)
+        self.lbl_error = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_error.setStyleSheet("color: red;")
+        self.lbl_error.setText("")
+        self.lbl_error.setObjectName("lbl_error")
+        self.verticalLayout.addWidget(self.lbl_error)
+        self.btn_create_account = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_create_account.setFont(font)
+        self.btn_create_account.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_create_account.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_create_account.setObjectName("btn_create_account")
+        self.verticalLayout.addWidget(self.btn_create_account)
+        self.label = QtWidgets.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(40, 150, 450, 330))
+        self.label.setMaximumSize(QtCore.QSize(450, 700))
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("ui/../images/reg-img.jpg"))
+        self.label.setScaledContents(True)
         self.label.setObjectName("label")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
+        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2.setGeometry(QtCore.QRect(550, 20, 256, 46))
+        font = QtGui.QFont()
+        font.setPointSize(30)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: #333c56;")
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(Form)
+        self.label_3.setGeometry(QtCore.QRect(550, 80, 155, 20))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: #babac1;")
+        self.label_3.setObjectName("label_3")
+        self.lbl_login = widgets.ClickableLabel(Form)
+        self.lbl_login.setGeometry(QtCore.QRect(750, 80, 52, 20))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lbl_login.setFont(font)
+        self.lbl_login.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.lbl_login.setStyleSheet("color: #4654f9;")
+        self.lbl_login.setObjectName("lbl_login")
+        self.label_4 = QtWidgets.QLabel(Form)
+        self.label_4.setGeometry(QtCore.QRect(40, 30, 175, 46))
+        font = QtGui.QFont()
+        font.setPointSize(30)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        font.setKerning(False)
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet("color: #333c56;")
+        self.label_4.setObjectName("label_4")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -184,20 +188,16 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
+        self.edit_name.setPlaceholderText(_translate("Form", "Имя"))
+        self.edit_surname.setPlaceholderText(_translate("Form", "Фамилия"))
+        self.edit_email.setPlaceholderText(_translate("Form", "Почта"))
+        self.cmb_gender.setItemText(0, _translate("Form", "Мальчик"))
+        self.cmb_gender.setItemText(1, _translate("Form", "Девочка"))
+        self.dtchoice_birthday.setDisplayFormat(_translate("Form", "dd.MM.yy"))
+        self.edit_password.setPlaceholderText(_translate("Form", "Пароль"))
+        self.edit_password_again.setPlaceholderText(_translate("Form", "Пароль еще раз"))
         self.btn_create_account.setText(_translate("Form", "Зарегестрироваться"))
-        self.label_5.setText(_translate("Form", "Фамилия:"))
-        self.label_4.setText(_translate("Form", "Почта:"))
-        self.label_6.setText(_translate("Form", "Дата рождения:"))
-        self.label_7.setText(_translate("Form", "Пол:"))
-        self.label_8.setText(_translate("Form", "Должность:"))
-        self.textBrowser.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Требования к паролю:</span></p>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Длина пароля не менее 9 символов</li>\n"
-"<li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Буквы разного регистра</li>\n"
-"<li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Цифры в парлу</li></ul></body></html>"))
-        self.label_3.setText(_translate("Form", "Пароль:"))
-        self.label_2.setText(_translate("Form", "Пароль еще раз:"))
-        self.label.setText(_translate("Form", "Имя:"))
+        self.label_2.setText(_translate("Form", "Регистриция"))
+        self.label_3.setText(_translate("Form", "Уже есть аккаунт?"))
+        self.lbl_login.setText(_translate("Form", "Войти"))
+        self.label_4.setText(_translate("Form", "PortSave"))
