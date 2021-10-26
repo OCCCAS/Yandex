@@ -1,13 +1,13 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QDialog
 from py_ui.login_account import Ui_Form
 
 from service import *
 from utils import *
 
 
-class LoginAccountApp(QWidget, Ui_Form):
+class LoginAccountApp(QDialog, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)

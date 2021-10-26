@@ -1,14 +1,15 @@
+import datetime
 import sys
-import shutil
-import pathlib
 import glob
 
-from PyQt5.QtWidgets import QApplication, QWidget, QFileDialog, QLabel, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QTextBrowser 
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 from py_ui.profile import Ui_Form
 
 from service import *
 from config import *
+from add_to_portfolio import AddToPortfolio
 
 
 class Profile(QWidget, Ui_Form):
@@ -16,66 +17,69 @@ class Profile(QWidget, Ui_Form):
         super().__init__()
         self.setupUi(self)
         self.fill_profile_info()
-        self.show_portfolio()
+        self.fill_portfolio_feed()
 
         self.btn_add_img_to_portfolio.clicked.connect(self.add_el_to_portfolio)
 
     def add_el_to_portfolio(self):
-        user_email = get_current_user_email()
+        add_to_portfolio_app = AddToPortfolio()
+        opened = add_to_portfolio_app.exec_()
 
-        abs_file_name = QFileDialog.getOpenFileName(
-            self, 'Выбрать картинку', '',
-            'Картинка (*.jpg);;Картинка (*.png);;Все файлы (*)')[0]
+        if not opened:
+            self.fill_portfolio_feed()
 
-        portfolio_index = get_user_data(user_email, 'portfolio_count')
-        if not portfolio_index:
-            portfolio_index = 0
-
-        new_file_name = f'{user_email}_{portfolio_index}.png'
-        database_handler_.execute('UPDATE users SET portfolio_count=portfolio_count + 1 WHERE email=?', (user_email,),
-                                  commit=True)
-
-        shutil.copyfile(abs_file_name, os.path.join(PORTFOLIO_PATH, new_file_name))
-        self.show_portfolio()
-
-    def clear_portfolio_view(self):
+    def clear_portfolio_feed(self):
         layout = self.feed_portfolio.widget().setParent(None)
 
-    def show_portfolio(self):
-        user_email = get_current_user_email()
-
+    def fill_portfolio_feed(self):
         if self.feed_portfolio.widget().layout():
-            self.clear_portfolio_view()
+            self.clear_portfolio_feed()
 
         images = QWidget()
         images_layout = QVBoxLayout()
+        user_portfolio_data = get_user_portfolio()
 
-        user_portfolio_files = [file_name for file_name in
-                                glob.glob(os.path.join(PORTFOLIO_PATH, f'{user_email}_*.png'))]
-
-        for file_name in user_portfolio_files:
+        for portfolio_data in user_portfolio_data:
+            file_name = portfolio_data[-1]
+            competitions_name = portfolio_data[1]
+            date = datetime.datetime.fromtimestamp(portfolio_data[3]).strftime('%d.%m.%Y')
+            place = portfolio_data[2]
+            
             lbl = QLabel()
             pixmap = QPixmap(file_name)
-            pixmap = pixmap.scaledToWidth(self.feed_portfolio.width() - 40)
+            pixmap = pixmap.scaledToWidth(images.width() // 2)
+            lbl.setAlignment(Qt.AlignCenter)
             lbl.setPixmap(pixmap)
+
+            portfolio_title = QTextBrowser()
+            portfolio_title.setText(f'<h2 align="center">{competitions_name}</h2>')
+            portfolio_title.setStyleSheet('background-color: rgba(0, 0, 0, 0);')
+
+            portfolio_info = QTextBrowser()
+            portfolio_info.setText(f'<h3>Дата: {date}<br>Место: {place}</h3>')
+            portfolio_info.setStyleSheet('background-color: rgba(0, 0, 0, 0);')
+
+            images_layout.addWidget(portfolio_title)
             images_layout.addWidget(lbl)
+            images_layout.addSpacing(5)
+            images_layout.addWidget(portfolio_info)
+            images_layout.addSpacing(20)
 
         images.setLayout(images_layout)
 
         self.feed_portfolio.setWidget(images)
 
-    def get_profile_info(self):
+    @staticmethod
+    def get_profile_info():
         user_email = get_current_user_email()
 
         name = get_user_data(user_email, 'name')
         surname = get_user_data(user_email, 'surname')
-        birthday = datetime.datetime.fromtimestamp(get_user_data(user_email, 'birthday')).strftime('%d.%m.%Y')
-        post = database_handler_.execute('SELECT posts.name FROM users, posts WHERE'
-                                         ' posts.id = users.post AND users.email=?', (user_email,))[0][0]
+        birthday_timestamp = get_user_data(user_email, 'birthday')
+        birthday = datetime.datetime.fromtimestamp(birthday_timestamp).strftime('%d.%m.%Y')
 
         text = f'<h3>{name} {surname}:</h3>' \
-               f'<ul><li>День рождения: {birthday}</li>' \
-               f'<li>Должность: {post}</li></ul>'
+               f'<ul><li>День рождения: {birthday}</li>'
 
         return text
 

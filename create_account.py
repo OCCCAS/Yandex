@@ -1,7 +1,8 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QDialog
 from py_ui.create_account import Ui_Form
+from login_account import LoginAccountApp
 
 from utils import *
 from exceptions import *
@@ -9,25 +10,13 @@ from validators import *
 from service import *
 
 
-class CreateAccountApp(QWidget, Ui_Form):
+class CreateAccountApp(QDialog, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.fillUi()
 
         self.btn_create_account.clicked.connect(self.__create_account)
-
-    def fillUi(self):
-        self.fill_gender_cmb()
-        self.fill_post_cmb()
-
-    def fill_gender_cmb(self):
-        choices = ['Мальчик', 'Девочка']
-        self.cmb_gender.addItems(choices)
-
-    def fill_post_cmb(self):
-        choices = ['Ребенок', 'Воспитатель']
-        self.cmb_post.addItems(choices)
+        self.lbl_login.clicked.connect(self.__login)
 
     def get_password(self):
         password = self.edit_password.text()
@@ -98,7 +87,6 @@ class CreateAccountApp(QWidget, Ui_Form):
         data['surname'] = self.get_surname()
         data['email'] = self.get_email()
         data['birthday'] = self.get_birthday()
-        data['post'] = self.cmb_post.currentText()
         # First symbol from gender
         data['gender'] = self.cmb_gender.currentText()[0]
         data['password'] = self.get_password()
@@ -123,6 +111,11 @@ class CreateAccountApp(QWidget, Ui_Form):
 
         except FormFillingError as e:
             self.show_error(e)
+
+    def __login(self):
+        login_app = LoginAccountApp()
+        self.close()
+        login_app.exec_()
 
 
 def except_hook(cls, exception, traceback):
