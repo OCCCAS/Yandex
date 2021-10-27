@@ -55,6 +55,7 @@ class Ui_Form(object):
         self.lbl_info.setObjectName("lbl_info")
         self.verticalLayout.addWidget(self.lbl_info)
         self.btn_login = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_login.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_login.setStyleSheet("padding: 10px;\n"
 "background-color: #4654f9;\n"
 "border-width: 2px;\n"
@@ -79,6 +80,7 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.lbl_create_account.setFont(font)
+        self.lbl_create_account.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.lbl_create_account.setStyleSheet("color: #4654f9;")
         self.lbl_create_account.setObjectName("lbl_create_account")
 

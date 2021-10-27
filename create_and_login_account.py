@@ -153,13 +153,15 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             # Clean error label
             self.show_error('')
 
-            res = create_account(data)
+            created = create_account(data)
 
             # If user was created
-            if res:
+            if not created:
                 self.show_error('Пользователь с такой почтой уже создан')
+                return
 
-            save_current_user({'email': data['email']})
+            save_current_user(data)
+            self.close()
         except FormFillingError as e:
             self.show_error(e)
 

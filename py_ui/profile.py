@@ -15,21 +15,30 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(501, 779)
+        Form.setStyleSheet("background-color: white;")
         self.btn_add_img_to_portfolio = QtWidgets.QPushButton(Form)
-        self.btn_add_img_to_portfolio.setGeometry(QtCore.QRect(10, 150, 212, 25))
+        self.btn_add_img_to_portfolio.setGeometry(QtCore.QRect(10, 160, 226, 39))
+        self.btn_add_img_to_portfolio.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
         self.btn_add_img_to_portfolio.setObjectName("btn_add_img_to_portfolio")
         self.feed_portfolio = QtWidgets.QScrollArea(Form)
-        self.feed_portfolio.setGeometry(QtCore.QRect(10, 190, 481, 571))
+        self.feed_portfolio.setGeometry(QtCore.QRect(10, 210, 481, 551))
+        self.feed_portfolio.setStyleSheet("border: unset;")
         self.feed_portfolio.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.feed_portfolio.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.feed_portfolio.setWidgetResizable(True)
         self.feed_portfolio.setObjectName("feed_portfolio")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 479, 569))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 481, 551))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.feed_portfolio.setWidget(self.scrollAreaWidgetContents)
         self.tb_profile_info = QtWidgets.QTextBrowser(Form)
         self.tb_profile_info.setGeometry(QtCore.QRect(10, 10, 481, 129))
+        self.tb_profile_info.setStyleSheet("background-color: rgba(0, 0, 0, 0);")
         self.tb_profile_info.setObjectName("tb_profile_info")
 
         self.retranslateUi(Form)

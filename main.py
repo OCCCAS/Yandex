@@ -10,7 +10,7 @@ from py_ui.profile import Ui_Form
 from service import *
 from config import *
 from add_to_portfolio import AddToPortfolio
-from create_account import CreateAccountApp
+from create_and_login_account import CreateAccountApp
 
 
 class Profile(QWidget, Ui_Form):

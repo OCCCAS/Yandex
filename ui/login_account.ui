@@ -92,6 +92,9 @@ border: 2px solid #eeeeee;</string>
     </item>
     <item>
      <widget class="QPushButton" name="btn_login">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="styleSheet">
        <string notr="true">padding: 10px;
 background-color: #4654f9;
@@ -145,6 +148,9 @@ color: white;
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
     <string notr="true">color: #4654f9;</string>
