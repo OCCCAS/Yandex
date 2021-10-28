@@ -69,17 +69,81 @@ color: white;
     </property>
    </widget>
   </widget>
-  <widget class="QTextBrowser" name="tb_profile_info">
+  <widget class="QLabel" name="lbl_name">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>10</y>
+     <width>180</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>TImur Pavlov</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_age">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>50</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>15 age</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_add_img_to_portfolio_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #4654f9;
+border-width: 2px;
+border-radius: 5px;
+color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>Редактировать профиль</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_profile_image">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>481</width>
-     <height>129</height>
+     <width>65</width>
+     <height>65</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../images/user.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

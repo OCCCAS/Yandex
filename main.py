@@ -77,16 +77,19 @@ class Profile(QWidget, Ui_Form):
         name = get_user_data(user_email, 'name')
         surname = get_user_data(user_email, 'surname')
         birthday_timestamp = get_user_data(user_email, 'birthday')
-        birthday = datetime.datetime.fromtimestamp(birthday_timestamp).strftime('%d.%m.%Y')
+        birthday = datetime.datetime.fromtimestamp(birthday_timestamp)
+        age = (datetime.datetime.now() - birthday).days // 365
+        
+        return {'name': f'{name} {surname}', 'age': age}
 
-        text = f'<h3>{name} {surname}:</h3>' \
-               f'<ul><li>День рождения: {birthday}</li>'
-
-        return text
+    def set_profile_photo(self):
+        self.lbl_profile_image.setPixmap(QPixmap(get_user_avatar_photo()))
 
     def fill_profile_info(self):
-        text = self.get_profile_info()
-        self.tb_profile_info.setText(str(text))
+        profile_info = self.get_profile_info()
+        self.lbl_name.setText(profile_info.get('name'))
+        self.lbl_age.setText(str(profile_info.get('age')) + ' лет')
+        self.set_profile_photo()
 
 
 def except_hook(cls, exception, traceback):
@@ -101,9 +104,10 @@ if __name__ == '__main__':
         create_account_app_ = CreateAccountApp()
         crt_acc = create_account_app_.exec_()
 
-    if not crt_acc:
+    if not crt_acc and is_user_loggined():
         app_ = Profile()
         app_.show()
 
-    sys.excepthook = except_hook
-    sys.exit(app.exec())
+        sys.excepthook = except_hook
+        sys.exit(app.exec())
+

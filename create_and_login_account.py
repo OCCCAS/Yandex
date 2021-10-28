@@ -1,6 +1,4 @@
-import sys
-
-from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtWidgets import QDialog, QFileDialog
 import py_ui.create_account
 import py_ui.login_account
 
@@ -8,6 +6,7 @@ from utils import *
 from exceptions import *
 from validators import *
 from service import *
+from config import *
 
 
 class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
@@ -66,10 +65,13 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
 class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
     def __init__(self):
         super().__init__()
+        self.avatar_photo = DEFAULT_AVATAR_PATH
+
         self.setupUi(self)
 
         self.btn_create_account.clicked.connect(self.__create_account)
         self.lbl_login.clicked.connect(self.__login)
+        self.btn_add_photo.clicked.connect(self.choose_photo)
 
     def get_password(self):
         password = self.edit_password.text()
@@ -129,6 +131,18 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             if field.text() == '':
                 raise FormFillingError('Не все поля заполнены!')
 
+    def choose_photo(self):
+        file_name = QFileDialog.getOpenFileName(self, 'Выбрать фотографию', '',
+                                                'Картинка (*.jpg);;Картинка (*.png);;Все файлы (*)')[0]
+
+        if not file_name:
+            self.avatar_photo = DEFAULT_AVATAR_PATH
+            self.btn_add_photo.setText('Добавить фотографию')
+            return
+
+        self.avatar_photo = file_name
+        self.btn_add_photo.setText(file_name)
+
     def show_error(self, text):
         self.lbl_error.setText(str(text))
 
@@ -139,7 +153,9 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             'email': self.get_email(),
             'birthday': self.get_birthday(),
             'gender': self.cmb_gender.currentText()[0],  # First gender symbol
-            'password': self.get_password(), 'portfolio_count': 0
+            'password': self.get_password(),
+            'portfolio_count': 0,
+            'avatar_photo': self.avatar_photo
         }
 
         return data

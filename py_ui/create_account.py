@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import widgets
 
 
 class Ui_Form(object):
@@ -23,11 +22,13 @@ class Ui_Form(object):
         Form.setAutoFillBackground(False)
         Form.setStyleSheet("background-color: white;")
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(520, 120, 341, 451))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(520, 120, 341, 321))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.edit_name = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_name.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
@@ -37,7 +38,7 @@ class Ui_Form(object):
 "\n"
 "")
         self.edit_name.setObjectName("edit_name")
-        self.verticalLayout.addWidget(self.edit_name)
+        self.horizontalLayout.addWidget(self.edit_name)
         self.edit_surname = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_surname.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
@@ -47,7 +48,8 @@ class Ui_Form(object):
 "\n"
 "")
         self.edit_surname.setObjectName("edit_surname")
-        self.verticalLayout.addWidget(self.edit_surname)
+        self.horizontalLayout.addWidget(self.edit_surname)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         self.edit_email = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_email.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
@@ -94,6 +96,8 @@ class Ui_Form(object):
         self.dtchoice_birthday.setTimeSpec(QtCore.Qt.LocalTime)
         self.dtchoice_birthday.setObjectName("dtchoice_birthday")
         self.verticalLayout.addWidget(self.dtchoice_birthday)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.edit_password = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_password.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
@@ -104,7 +108,7 @@ class Ui_Form(object):
 "")
         self.edit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.edit_password.setObjectName("edit_password")
-        self.verticalLayout.addWidget(self.edit_password)
+        self.horizontalLayout_2.addWidget(self.edit_password)
         self.edit_password_again = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.edit_password_again.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
@@ -115,26 +119,17 @@ class Ui_Form(object):
 "")
         self.edit_password_again.setEchoMode(QtWidgets.QLineEdit.Password)
         self.edit_password_again.setObjectName("edit_password_again")
-        self.verticalLayout.addWidget(self.edit_password_again)
-        self.lbl_error = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.lbl_error.setStyleSheet("color: red;")
-        self.lbl_error.setText("")
-        self.lbl_error.setObjectName("lbl_error")
-        self.verticalLayout.addWidget(self.lbl_error)
-        self.btn_create_account = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.btn_create_account.setFont(font)
-        self.btn_create_account.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.btn_create_account.setStyleSheet("padding: 10px;\n"
-"background-color: #4654f9;\n"
-"border-width: 2px;\n"
+        self.horizontalLayout_2.addWidget(self.edit_password_again)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.btn_add_photo = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_photo.setStyleSheet("background-color: #eeeeee;\n"
 "border-radius: 5px;\n"
-"color: white;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
 "")
-        self.btn_create_account.setObjectName("btn_create_account")
-        self.verticalLayout.addWidget(self.btn_create_account)
+        self.btn_add_photo.setObjectName("btn_add_photo")
+        self.verticalLayout.addWidget(self.btn_add_photo)
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(40, 150, 450, 330))
         self.label.setMaximumSize(QtCore.QSize(450, 700))
@@ -160,7 +155,7 @@ class Ui_Form(object):
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("color: #babac1;")
         self.label_3.setObjectName("label_3")
-        self.lbl_login = widgets.ClickableLabel(Form)
+        self.lbl_login = QClickableLabel(Form)
         self.lbl_login.setGeometry(QtCore.QRect(750, 80, 52, 20))
         font = QtGui.QFont()
         font.setPointSize(13)
@@ -181,6 +176,25 @@ class Ui_Form(object):
         self.label_4.setFont(font)
         self.label_4.setStyleSheet("color: #333c56;")
         self.label_4.setObjectName("label_4")
+        self.lbl_error = QtWidgets.QLabel(Form)
+        self.lbl_error.setGeometry(QtCore.QRect(520, 450, 339, 31))
+        self.lbl_error.setStyleSheet("color: red;")
+        self.lbl_error.setText("")
+        self.lbl_error.setObjectName("lbl_error")
+        self.btn_create_account = QtWidgets.QPushButton(Form)
+        self.btn_create_account.setGeometry(QtCore.QRect(520, 510, 339, 37))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_create_account.setFont(font)
+        self.btn_create_account.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btn_create_account.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_create_account.setObjectName("btn_create_account")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -196,8 +210,10 @@ class Ui_Form(object):
         self.dtchoice_birthday.setDisplayFormat(_translate("Form", "dd.MM.yy"))
         self.edit_password.setPlaceholderText(_translate("Form", "Пароль"))
         self.edit_password_again.setPlaceholderText(_translate("Form", "Пароль еще раз"))
-        self.btn_create_account.setText(_translate("Form", "Зарегестрироваться"))
+        self.btn_add_photo.setText(_translate("Form", "Добавить фотографию"))
         self.label_2.setText(_translate("Form", "Регистриция"))
         self.label_3.setText(_translate("Form", "Уже есть аккаунт?"))
         self.lbl_login.setText(_translate("Form", "Войти"))
         self.label_4.setText(_translate("Form", "PortSave"))
+        self.btn_create_account.setText(_translate("Form", "Зарегестрироваться"))
+from qclickablelabel import QClickableLabel

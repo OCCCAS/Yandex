@@ -31,41 +31,45 @@
      <x>520</x>
      <y>120</y>
      <width>341</width>
-     <height>451</height>
+     <height>321</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLineEdit" name="edit_name">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="edit_name">
+        <property name="styleSheet">
+         <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-      <property name="placeholderText">
-       <string>Имя</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="edit_surname">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+        </property>
+        <property name="placeholderText">
+         <string>Имя</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_surname">
+        <property name="styleSheet">
+         <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-      <property name="placeholderText">
-       <string>Фамилия</string>
-      </property>
-     </widget>
+        </property>
+        <property name="placeholderText">
+         <string>Фамилия</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QLineEdit" name="edit_email">
@@ -164,74 +168,59 @@ border: 2px solid #eeeeee;
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="edit_password">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="edit_password">
+        <property name="styleSheet">
+         <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Пароль</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="edit_password_again">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Пароль</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="edit_password_again">
+        <property name="styleSheet">
+         <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Пароль еще раз</string>
-      </property>
-     </widget>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Пароль еще раз</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
-     <widget class="QLabel" name="lbl_error">
+     <widget class="QPushButton" name="btn_add_photo">
       <property name="styleSheet">
-       <string notr="true">color: red;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btn_create_account">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">padding: 10px;
-background-color: #4654f9;
-border-width: 2px;
+       <string notr="true">background-color: #eeeeee;
 border-radius: 5px;
-color: white;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
 </string>
       </property>
       <property name="text">
-       <string>Зарегестрироваться</string>
+       <string>Добавить фотографию</string>
       </property>
      </widget>
     </item>
@@ -308,7 +297,7 @@ color: white;
     <string>Уже есть аккаунт?</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lbl_login">
+  <widget class="QClickableLabel" name="lbl_login">
    <property name="geometry">
     <rect>
      <x>750</x>
@@ -359,7 +348,60 @@ color: white;
     <string>PortSave</string>
    </property>
   </widget>
+  <widget class="QLabel" name="lbl_error">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>450</y>
+     <width>339</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: red;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_create_account">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>510</y>
+     <width>339</width>
+     <height>37</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 10px;
+background-color: #4654f9;
+border-width: 2px;
+border-radius: 5px;
+color: white;
+</string>
+   </property>
+   <property name="text">
+    <string>Зарегестрироваться</string>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QClickableLabel</class>
+   <extends>QLabel</extends>
+   <header location="global">qclickablelabel.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

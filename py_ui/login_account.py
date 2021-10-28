@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import widgets
 
 
 class Ui_Form(object):
@@ -73,7 +72,7 @@ class Ui_Form(object):
         self.label.setFont(font)
         self.label.setStyleSheet("color: #babac1;")
         self.label.setObjectName("label")
-        self.lbl_create_account = widgets.ClickableLabel(Form)
+        self.lbl_create_account = QClickableLabel(Form)
         self.lbl_create_account.setGeometry(QtCore.QRect(260, 100, 132, 20))
         font = QtGui.QFont()
         font.setPointSize(13)
@@ -96,3 +95,4 @@ class Ui_Form(object):
         self.btn_login.setText(_translate("Form", "Войти"))
         self.label.setText(_translate("Form", "Нет аккаунта?"))
         self.lbl_create_account.setText(_translate("Form", "Создай аккаунт"))
+from qclickablelabel import QClickableLabel

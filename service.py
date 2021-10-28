@@ -12,17 +12,33 @@ def is_user_created(email):
     return True if data else False
 
 
+def create_local_avatar_file_name(email):
+    return f'user.{email}.avatar.png'
+
+
+def copy_avatar_photo(file_name, email):
+    new_file_name = create_local_avatar_file_name(email)
+    new_file_path = os.path.join(config.AVATARS_PATH, new_file_name)
+
+    shutil.copyfile(file_name, new_file_path)
+
+    return new_file_path
+
+
 def create_account(data):
-    json_keys = ['name', 'surname', 'email', 'birthday', 'gender', 'password', 'portfolio_count']
+    json_keys = ['name', 'surname', 'email', 'birthday', 'gender', 'password', 'portfolio_count', 'avatar_photo']
     json_ = {}
 
-    for key in json_keys:
-        json_[key] = data.get(key)
+    if not is_user_created(data.get('email')):
+        avatar_path = copy_avatar_photo(data.get('avatar_photo'), data.get('email'))
+        data['avatar_photo'] = avatar_path
 
-    if not is_user_created(json_.get('email')):
+        for key in json_keys:
+            json_[key] = data.get(key)
+
         database_handler_.execute(
-            'INSERT INTO users(name, surname, email, birthday, gender, password, portfolio_count) '
-            'VALUES(?, ?, ?, ?, ?, ?, ?)', list(json_.values()), commit=True)
+            f'INSERT INTO users({", ".join(json_keys)}) '
+            f'VALUES({", ".join(["?" for _ in range(len(json_keys))])})', list(json_.values()), commit=True)
 
         return True
     else:
@@ -45,8 +61,11 @@ def login(data):
 
 
 def get_user_data(email, column_name):
-    data = database_handler_.execute(f'SELECT {column_name} FROM users WHERE email=?', (email,))[0][0]
-    return data
+    data = database_handler_.execute(f'SELECT {column_name} FROM users WHERE email=?', (email,))
+    if data:
+        return data[0][0]
+    else:
+        return ''
 
 
 def get_current_user_email():
@@ -116,6 +135,11 @@ def get_user_portfolio():
     data = database_handler_.execute('SELECT * FROM portfolio WHERE email=?', (user_email,))
 
     return data
+
+
+def get_user_avatar_photo():
+    user_email = get_current_user_email()
+    return get_user_data(user_email, 'avatar_photo')
 
 
 def is_user_loggined():

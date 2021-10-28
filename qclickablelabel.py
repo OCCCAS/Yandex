@@ -2,7 +2,7 @@ from PyQt5 import QtCore
 from PyQt5.QtWidgets import QLabel
 
 
-class ClickableLabel(QLabel):
+class QClickableLabel(QLabel):
     clicked = QtCore.pyqtSignal()
  
     def mousePressEvent(self, QMouseEvent):

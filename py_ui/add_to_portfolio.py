@@ -14,49 +14,71 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(421, 246)
-        self.formLayoutWidget = QtWidgets.QWidget(Form)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(10, 10, 401, 144))
-        self.formLayoutWidget.setObjectName("formLayoutWidget")
-        self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
-        self.formLayout.setObjectName("formLayout")
-        self.edit_competitions_name = QtWidgets.QLineEdit(self.formLayoutWidget)
-        self.edit_competitions_name.setObjectName("edit_competitions_name")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.edit_competitions_name)
-        self.label_2 = QtWidgets.QLabel(self.formLayoutWidget)
-        self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
-        self.edit_date = QtWidgets.QDateEdit(self.formLayoutWidget)
-        self.edit_date.setObjectName("edit_date")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.edit_date)
-        self.label_3 = QtWidgets.QLabel(self.formLayoutWidget)
-        self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
-        self.cmb_place = QtWidgets.QComboBox(self.formLayoutWidget)
-        self.cmb_place.setObjectName("cmb_place")
-        self.cmb_place.addItem("")
-        self.cmb_place.addItem("")
-        self.cmb_place.addItem("")
-        self.cmb_place.addItem("")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.cmb_place)
-        self.label_4 = QtWidgets.QLabel(self.formLayoutWidget)
-        self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_4)
-        self.btn_add_photo = QtWidgets.QPushButton(self.formLayoutWidget)
-        self.btn_add_photo.setObjectName("btn_add_photo")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.btn_add_photo)
-        self.label = QtWidgets.QLabel(self.formLayoutWidget)
-        self.label.setObjectName("label")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
-        self.btn_add_to_portfolio = QtWidgets.QPushButton(Form)
-        self.btn_add_to_portfolio.setGeometry(QtCore.QRect(240, 210, 172, 25))
-        self.btn_add_to_portfolio.setObjectName("btn_add_to_portfolio")
+        Form.resize(404, 321)
+        Form.setStyleSheet("background-color: white;")
         self.lbl_error = QtWidgets.QLabel(Form)
         self.lbl_error.setGeometry(QtCore.QRect(10, 170, 67, 17))
         self.lbl_error.setStyleSheet("color: red;")
         self.lbl_error.setText("")
         self.lbl_error.setObjectName("lbl_error")
+        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 10, 351, 233))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.edit_competitions_name = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.edit_competitions_name.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.edit_competitions_name.setObjectName("edit_competitions_name")
+        self.verticalLayout.addWidget(self.edit_competitions_name)
+        self.edit_date = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        self.edit_date.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.edit_date.setObjectName("edit_date")
+        self.verticalLayout.addWidget(self.edit_date)
+        self.cmb_place = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.cmb_place.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.cmb_place.setObjectName("cmb_place")
+        self.cmb_place.addItem("")
+        self.cmb_place.addItem("")
+        self.cmb_place.addItem("")
+        self.cmb_place.addItem("")
+        self.verticalLayout.addWidget(self.cmb_place)
+        self.btn_add_photo = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_photo.setStyleSheet("background-color: #eeeeee;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"")
+        self.btn_add_photo.setObjectName("btn_add_photo")
+        self.verticalLayout.addWidget(self.btn_add_photo)
+        self.btn_add_to_portfolio = QtWidgets.QPushButton(Form)
+        self.btn_add_to_portfolio.setGeometry(QtCore.QRect(30, 260, 349, 41))
+        self.btn_add_to_portfolio.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_add_to_portfolio.setObjectName("btn_add_to_portfolio")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -64,13 +86,10 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label_2.setText(_translate("Form", "Дата проведения:"))
-        self.label_3.setText(_translate("Form", "Место:"))
+        self.edit_competitions_name.setPlaceholderText(_translate("Form", "Название соревнований"))
         self.cmb_place.setItemText(0, _translate("Form", "1 (Победитель)"))
         self.cmb_place.setItemText(1, _translate("Form", "2 (Призер)"))
         self.cmb_place.setItemText(2, _translate("Form", "3 (Призер)"))
         self.cmb_place.setItemText(3, _translate("Form", "Участник"))
-        self.label_4.setText(_translate("Form", "Фотография:"))
         self.btn_add_photo.setText(_translate("Form", "Добавить фотографию"))
-        self.label.setText(_translate("Form", "Название соревнований:"))
         self.btn_add_to_portfolio.setText(_translate("Form", "Добавить в портфолио"))
