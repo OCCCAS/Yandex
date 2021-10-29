@@ -133,7 +133,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
     def choose_photo(self):
         file_name = QFileDialog.getOpenFileName(self, 'Выбрать фотографию', '',
-                                                'Картинка (*.jpg);;Картинка (*.png);;Все файлы (*)')[0]
+                                                'Картинка jpg (*.jpg);;Картинка png (*.png);;Все файлы (*)')[0]
 
         if not file_name:
             self.avatar_photo = DEFAULT_AVATAR_PATH
