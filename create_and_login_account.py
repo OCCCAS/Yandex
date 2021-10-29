@@ -48,9 +48,9 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
                 'email': self.get_email(),
                 'password': self.get_password()
             }
-            res = login(data)
+            is_login_exists = check_login_exists(data)
 
-            if not res:
+            if not is_login_exists:
                 self.show_info('Не правильно введен логин или пароль')
             else:
                 save_current_user(data)

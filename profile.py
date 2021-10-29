@@ -71,11 +71,12 @@ class Profile(QWidget, Ui_Form):
 
     @staticmethod
     def get_profile_info():
-        user_email = get_current_user_email()
+        user_email = get_local_user_email()
 
-        name = get_user_data(user_email, 'name')
-        surname = get_user_data(user_email, 'surname')
-        birthday_timestamp = get_user_data(user_email, 'birthday')
+        name, surname, birthday_timestamp = get_user_data_by_columns(
+            ['name', 'surname', 'birthday'],
+            user_email
+        )
         birthday = datetime.datetime.fromtimestamp(birthday_timestamp).strftime('%d.%m.%Y')
 
         text = f'<h3>{name} {surname}:</h3>' \

@@ -82,11 +82,12 @@ class Profile(QWidget, Ui_Form):
 
     @staticmethod
     def get_profile_info():
-        user_email = get_current_user_email()
+        user_email = get_local_user_email()
 
-        name = get_user_data(user_email, 'name')
-        surname = get_user_data(user_email, 'surname')
-        birthday_timestamp = get_user_data(user_email, 'birthday')
+        name, surname, birthday_timestamp = get_user_data_by_columns(
+            ['name', 'surname', 'birthday'],
+            user_email
+        )
         birthday = datetime.datetime.fromtimestamp(birthday_timestamp)
         age = (datetime.datetime.now() - birthday).days // 365
         
@@ -111,11 +112,11 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     crt_acc = False
 
-    if not is_user_loggined():
+    if not is_user_logged_in_local():
         create_account_app_ = CreateAccountApp()
         crt_acc = create_account_app_.exec_()
 
-    if not crt_acc and is_user_loggined():
+    if not crt_acc and is_user_logged_in_local():
         app_ = Profile()
         app_.show()
 
