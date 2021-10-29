@@ -3,6 +3,7 @@ import os
 from database_handler import DatabaseHandler
 import config
 import json
+from utils import *
 
 database_handler_ = DatabaseHandler(config.DATABASE_PATH)
 
@@ -14,15 +15,6 @@ def is_user_created(email):
 
 def create_local_avatar_file_name(email):
     return f'user.{email}.avatar.png'
-
-
-def copy_avatar_photo(file_name, email):
-    new_file_name = create_local_avatar_file_name(email)
-    new_file_path = os.path.join(config.AVATARS_PATH, new_file_name)
-
-    shutil.copyfile(file_name, new_file_path)
-
-    return new_file_path
 
 
 def create_account(data):
@@ -77,14 +69,23 @@ def get_current_user_email():
         if 'email' in json_data['user']:
             return json_data['user']['email']
 
-    return {}
+    return False
+
+
+def copy_avatar_photo(file_name):
+    user_email = hash_data(get_current_user_email())
+    new_file_name = create_local_avatar_file_name(user_email)
+    new_file_path = os.path.join(config.AVATARS_PATH, new_file_name)
+
+    shutil.copyfile(file_name, new_file_path)
+
+    return new_file_path
 
 
 def save_current_user(data):
     data = {
         'user': {
             'email': data.get('email'),
-            'password': data.get('password')
         }
     }
 
@@ -94,18 +95,25 @@ def save_current_user(data):
 
 
 def create_local_file_name():
-    user_email = get_current_user_email()
+    user_email = hash_data(get_current_user_email())
     photo_index = get_user_data(user_email, 'portfolio_count')
     return f'{user_email}_{photo_index}.png'
 
 
-def copy_user_photo(user_photo):
+def copy_user_portfolio_photo(user_photo):
     new_file_name = create_local_file_name()
     new_file_path = os.path.join(config.PORTFOLIO_PATH, new_file_name)
 
     shutil.copyfile(user_photo, new_file_path)
 
     return new_file_path
+
+
+def edit_profile(name, surname, gender, birthday, photo):
+    user_email = get_current_user_email()
+    photo = copy_avatar_photo(photo)
+    database_handler_.execute('UPDATE users SET name=?, surname=?, gender=?, birthday=?, avatar_photo=? WHERE email=?',
+                              (name, surname, gender, birthday, photo, user_email), commit=True)
 
 
 def increase_photo_count():
@@ -116,7 +124,7 @@ def increase_photo_count():
 
 def add_to_portfolio(competitions_name, place, date, photo):
     user_email = get_current_user_email()
-    photo = copy_user_photo(photo)
+    photo = copy_user_portfolio_photo(photo)
     increase_photo_count()
 
     try:
@@ -142,6 +150,12 @@ def get_user_avatar_photo():
     return get_user_data(user_email, 'avatar_photo')
 
 
+def get_all_user_data():
+    user_email = get_current_user_email()
+    data = database_handler_.execute('SELECT * FROM users WHERE email=?', (user_email,))[0]
+    return data
+
+
 def is_user_loggined():
     with open('user.json', 'r') as file:
         data = json.load(file)
@@ -149,10 +163,6 @@ def is_user_loggined():
 
     if 'user' in data:
         if 'email' in data['user']:
-            password = get_user_data(data['user']['email'], 'password')
-
-            if 'password' in data['user']:
-                if password == data['user']['password']:
-                    return True
+            return True
 
     return False

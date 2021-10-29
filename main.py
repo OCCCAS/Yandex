@@ -10,6 +10,7 @@ from py_ui.profile import Ui_Form
 from service import *
 from config import *
 from add_to_portfolio import AddToPortfolio
+from edit_profile import EditProfile
 from create_and_login_account import CreateAccountApp
 
 
@@ -21,6 +22,15 @@ class Profile(QWidget, Ui_Form):
         self.fill_portfolio_feed()
 
         self.btn_add_img_to_portfolio.clicked.connect(self.add_el_to_portfolio)
+        self.btn_edit_profile.clicked.connect(self.edit_profile)
+
+    def edit_profile(self):
+        edit_profile_app = EditProfile()
+        opened = edit_profile_app.exec_()
+
+        if not opened:
+            self.fill_profile_info()
+            self.set_profile_photo()
 
     def add_el_to_portfolio(self):
         add_to_portfolio_app = AddToPortfolio()
@@ -88,6 +98,7 @@ class Profile(QWidget, Ui_Form):
     def fill_profile_info(self):
         profile_info = self.get_profile_info()
         self.lbl_name.setText(profile_info.get('name'))
+        self.lbl_name.adjustSize()
         self.lbl_age.setText(str(profile_info.get('age')) + ' лет')
         self.set_profile_photo()
 

@@ -36,17 +36,17 @@ class Ui_Form(object):
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 479, 549))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.feed_portfolio.setWidget(self.scrollAreaWidgetContents)
-        self.btn_edit_profile = QtWidgets.QPushButton(Form)
-        self.btn_edit_profile.setGeometry(QtCore.QRect(10, 90, 171, 21))
+        self.btn_add_img_to_portfolio = QtWidgets.QPushButton(Form)
+        self.btn_add_img_to_portfolio.setGeometry(QtCore.QRect(10, 90, 171, 21))
         font = QtGui.QFont()
         font.setPointSize(8)
-        self.btn_edit_profile.setFont(font)
-        self.btn_edit_profile.setStyleSheet("background-color: #4654f9;\n"
+        self.btn_add_img_to_portfolio.setFont(font)
+        self.btn_add_img_to_portfolio.setStyleSheet("background-color: #4654f9;\n"
 "border-width: 2px;\n"
 "border-radius: 5px;\n"
 "color: white;\n"
 "")
-        self.btn_edit_profile.setObjectName("btn_edit_profile")
+        self.btn_add_img_to_portfolio.setObjectName("btn_add_img_to_portfolio")
         self.lbl_profile_image = QtWidgets.QLabel(Form)
         self.lbl_profile_image.setGeometry(QtCore.QRect(10, 10, 65, 65))
         self.lbl_profile_image.setText("")
@@ -70,5 +70,5 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.btn_add_img_to_portfolio.setText(_translate("Form", "Добавить фото в портфолио"))
         self.lbl_age.setText(_translate("Form", "15 age"))
-        self.btn_edit_profile.setText(_translate("Form", "Редактировать профиль"))
+        self.btn_add_img_to_portfolio_2.setText(_translate("Form", "Редактировать профиль"))
         self.lbl_name.setText(_translate("Form", "TImur Pavlov"))

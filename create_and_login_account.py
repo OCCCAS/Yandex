@@ -19,7 +19,7 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
 
     def get_email(self):
         email = self.edit_email.text()
-        return hash_data(email)
+        return email
 
     def get_password(self):
         password = self.edit_password.text()
@@ -118,7 +118,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         if not EmailValidator(email).validate():
             raise FormFillingError('Почтовый аддрес не корректный!')
 
-        return hash_data(email)
+        return email
 
     def check_empty_fields(self):
         fields = [
