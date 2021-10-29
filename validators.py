@@ -13,11 +13,11 @@ class BaseValidator:
 
 class DateValidator(BaseValidator):
     def __init__(self, datetime_timestamp: int):
-        self.datetime_timestamp = datetime.datetime.fromtimestamp(datetime_timestamp)
+        self.datetime_ = datetime.datetime.fromtimestamp(datetime_timestamp)
         super().__init__(datetime_timestamp)
 
     def validate(self) -> bool:
-        if self.datetime_timestamp > datetime.datetime.now():
+        if self.datetime_ > datetime.datetime.now():
             return False
 
         return True

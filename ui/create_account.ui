@@ -154,7 +154,7 @@ border: 2px solid #eeeeee;
        <enum>QDateTimeEdit::DaySection</enum>
       </property>
       <property name="displayFormat">
-       <string>dd.MM.yy</string>
+       <string>dd.MM.yyyy</string>
       </property>
       <property name="calendarPopup">
        <bool>false</bool>

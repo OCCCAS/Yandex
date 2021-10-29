@@ -207,7 +207,7 @@ class Ui_Form(object):
         self.edit_email.setPlaceholderText(_translate("Form", "Почта"))
         self.cmb_gender.setItemText(0, _translate("Form", "Мальчик"))
         self.cmb_gender.setItemText(1, _translate("Form", "Девочка"))
-        self.dtchoice_birthday.setDisplayFormat(_translate("Form", "dd.MM.yy"))
+        self.dtchoice_birthday.setDisplayFormat(_translate("Form", "dd.MM.yyyy"))
         self.edit_password.setPlaceholderText(_translate("Form", "Пароль"))
         self.edit_password_again.setPlaceholderText(_translate("Form", "Пароль еще раз"))
         self.btn_add_photo.setText(_translate("Form", "Добавить фотографию"))
