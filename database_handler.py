@@ -84,17 +84,5 @@ class DatabaseHandler:
     def get_full_user_data(self, email):
         return self.cursor.execute('SELECT * FROM users WHERE email=?', (email, )).fetchone()[0]
 
-    def execute(self, command, params, commit=False):
-        try:
-            data = self.cursor.execute(command, params).fetchall()
-
-            if commit:
-                self.conn.commit()
-            else:
-                return data
-        except Exception as e:
-            print(e)
-            return ()
-
     def __del__(self):
         self.conn.close()
