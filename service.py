@@ -31,7 +31,8 @@ def create_local_portfolio_file_name() -> str:
 
 # Creating account
 def create_account(data: dict) -> bool:
-    if not check_login_exists(data.get('email')):
+    if not check_login_exists(data):
+        save_current_user_to_local(data)
         data['avatar_photo'] = copy_avatar_photo_to_local(data.get('avatar_photo'))
 
         database_handler_.create_account(list(data.values()))
@@ -154,5 +155,18 @@ def get_all_user_data() -> Union[list, tuple]:
     return database_handler_.get_full_user_data(user_email)
 
 
+# Check login data correctness
 def check_login_data_correctness(login_data: dict) -> bool:
     return database_handler_.check_login_data_correctness(login_data)
+
+
+# Read program messages file, and return message
+def get_filing_error_text(error_name: str) -> str:
+    with open('program_messages.json', 'r') as json_file:
+        errors_message = json.load(json_file)
+        json_file.close()
+
+    if error_name in errors_message['errors_text']:
+        return errors_message['errors_text'].get(error_name)
+    else:
+        return ''

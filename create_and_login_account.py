@@ -1,12 +1,11 @@
 from PyQt5.QtWidgets import QDialog, QFileDialog
+
 import py_ui.create_account
 import py_ui.login_account
-
-from utils import *
-from exceptions import *
-from validators import *
-from service import *
 from config import *
+from exceptions import *
+from service import *
+from validators import *
 
 
 class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
@@ -47,16 +46,16 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
     def __login(self):
         try:
             if self.__is_fields_empty():
-                raise FormFillingError('Не все поля заполнены')
+                raise FormFillingError(get_filing_error_text('empty_fields'))
 
             data = self.__get_login_data()
             is_login_exists = check_login_exists(data)
             is_login_data_correct = check_login_data_correctness(data)
 
             if not is_login_exists:
-                raise FormFillingError('Такого аккаунта не существует')
+                raise FormFillingError(get_filing_error_text('login_not_exists'))
             if not is_login_data_correct:
-                raise FormFillingError('Не правильно введен логин или пароль')
+                raise FormFillingError(get_filing_error_text('incorrect_login_data'))
             else:
                 save_current_user_to_local(data)
                 self.close()
@@ -85,17 +84,17 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         password_again = self.edit_password_again.text()
 
         if not password == password_again:
-            raise FormFillingError('Пароли не совпадают')
+            raise FormFillingError(get_filing_error_text('passwords_not_equal'))
 
         if not PasswordValidator(password).validate():
-            raise FormFillingError('Пароль не соответствует требованиям')
+            raise FormFillingError(get_filing_error_text('invalid_password'))
 
         return hash_data(password)
 
     def __get_birthday(self):
         date = self.dtchoice_birthday.dateTime().toPyDateTime().timestamp()
         if not DateValidator(date).validate():
-            raise FormFillingError('Дата рождения не корректна!')
+            raise FormFillingError(get_filing_error_text('invalid_birthday'))
 
         return int(date)
 
@@ -105,7 +104,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         for letter in name:
             # If digits in name
             if letter.isdigit():
-                raise FormFillingError('В имени не должно быть цифр!')
+                raise FormFillingError(get_filing_error_text('invalid_name'))
 
         return name
 
@@ -115,7 +114,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         for letter in surname:
             # If digits in surname
             if letter.isdigit():
-                raise FormFillingError('В фамилии не должно быть цифр!')
+                raise FormFillingError(get_filing_error_text('invalid_name'))
 
         return surname
 
@@ -123,7 +122,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         email = self.edit_email.text()
 
         if not EmailValidator(email).validate():
-            raise FormFillingError('Почтовый аддрес не корректный!')
+            raise FormFillingError(get_filing_error_text('invalid_email'))
 
         return email
 
@@ -167,7 +166,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         try:
             # Check empty fields
             if self.__is_fields_empty():
-                raise FormFillingError('Не все поля заполнены')
+                raise FormFillingError(get_filing_error_text('empty_fields'))
 
             data = self.__get_account_data()
             self.__show_error('')
@@ -176,9 +175,8 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
             # If user was created
             if not account_is_created:
-                raise FormFillingError('Пользователь с такой почтой уже создан')
+                raise FormFillingError(get_filing_error_text('user_was_created'))
 
-            save_current_user_to_local(data)
             self.close()
         except FormFillingError as e:
             self.__show_error(e)

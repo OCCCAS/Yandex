@@ -14,8 +14,8 @@ class DatabaseHandler:
         try:
             columns_name = self.__get_columns_name()
             self.cursor.execute(
-                f"INSERT INTO users ({', '.join(columns_name)}) "
-                f"VALUES ({', '.join(['?' * len(columns_name)])})", data)
+                f"INSERT INTO users ({', '.join(columns_name[1:])}) "
+                f"VALUES ({', '.join(['?'] * len(columns_name[1:]))})", data)
             self.conn.commit()
             return True
         except sqlite3.IntegrityError:

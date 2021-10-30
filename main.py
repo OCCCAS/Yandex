@@ -1,16 +1,13 @@
-import datetime
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QTextBrowser, QScrollArea
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
-from py_ui.profile import Ui_Form
+from PyQt5.QtWidgets import QApplication
 
-from service import *
 from add_to_portfolio import AddToPortfolio
-from edit_profile import EditProfile
 from create_and_login_account import CreateAccountApp
+from edit_profile import EditProfile
+from py_ui.profile import Ui_Form
 from qportfoliofeed import *
+from service import *
 
 
 class Profile(QWidget, Ui_Form):
