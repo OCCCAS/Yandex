@@ -17,44 +17,51 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
         self.btn_login.clicked.connect(self.__login)
         self.lbl_create_account.clicked.connect(self.__create_account)
 
-    def get_email(self):
+    def __get_email(self):
         email = self.edit_email.text()
         return email
 
-    def get_password(self):
+    def __get_password(self):
         password = self.edit_password.text()
         return hash_data(password)
 
-    def is_fields_empty(self):
+    def __is_fields_empty(self):
         fields = [self.edit_email, self.edit_password]
 
         for field in fields:
             if not field.text():
                 return True
+        else:
+            return False
 
-        return False
-
-    def show_info(self, text):
+    def __show_error(self, text):
         self.lbl_info.setText(text)
         self.lbl_info.adjustSize()
 
-    def __login(self):
-        if self.is_fields_empty():
-            self.show_info('Не все поля заполнены')
-        else:
-            self.show_info('')
+    def __get_login_data(self) -> dict:
+        return {
+            'email': self.__get_email(),
+            'password': self.__get_password()
+        }
 
-            data = {
-                'email': self.get_email(),
-                'password': self.get_password()
-            }
+    def __login(self):
+        try:
+            if self.__is_fields_empty():
+                raise FormFillingError('Не все поля заполнены')
+
+            data = self.__get_login_data()
             is_login_exists = check_login_exists(data)
+            is_login_data_correct = check_login_data_correctness(data)
 
             if not is_login_exists:
-                self.show_info('Не правильно введен логин или пароль')
+                raise FormFillingError('Такого аккаунта не существует')
+            if not is_login_data_correct:
+                raise FormFillingError('Не правильно введен логин или пароль')
             else:
-                save_current_user(data)
+                save_current_user_to_local(data)
                 self.close()
+        except FormFillingError as e:
+            self.__show_error(e)
 
     def __create_account(self):
         create_account_app = CreateAccountApp()
@@ -71,9 +78,9 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
         self.btn_create_account.clicked.connect(self.__create_account)
         self.lbl_login.clicked.connect(self.__login)
-        self.btn_add_photo.clicked.connect(self.choose_photo)
+        self.btn_add_photo.clicked.connect(self.__choose_photo)
 
-    def get_password(self):
+    def __get_password(self):
         password = self.edit_password.text()
         password_again = self.edit_password_again.text()
 
@@ -85,14 +92,14 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
         return hash_data(password)
 
-    def get_birthday(self):
+    def __get_birthday(self):
         date = self.dtchoice_birthday.dateTime().toPyDateTime().timestamp()
         if not DateValidator(date).validate():
             raise FormFillingError('Дата рождения не корректна!')
 
         return int(date)
 
-    def get_name(self):
+    def __get_name(self):
         name = self.edit_name.text()
 
         for letter in name:
@@ -102,7 +109,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
         return name
 
-    def get_surname(self):
+    def __get_surname(self):
         surname = self.edit_surname.text()
 
         for letter in surname:
@@ -112,7 +119,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
         return surname
 
-    def get_email(self):
+    def __get_email(self):
         email = self.edit_email.text()
 
         if not EmailValidator(email).validate():
@@ -120,18 +127,16 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
         return email
 
-    def check_empty_fields(self):
-        fields = [
-            self.edit_name,
-            self.edit_surname,
-            self.edit_password
-        ]
+    def __is_fields_empty(self) -> bool:
+        fields = [self.edit_name, self.edit_surname, self.edit_password]
 
         for field in fields:
-            if field.text() == '':
-                raise FormFillingError('Не все поля заполнены!')
+            if not field.text():
+                return True
+        else:
+            return False
 
-    def choose_photo(self):
+    def __choose_photo(self):
         file_name = QFileDialog.getOpenFileName(self, 'Выбрать фотографию', '',
                                                 'Картинка jpg (*.jpg);;Картинка png (*.png);;Все файлы (*)')[0]
 
@@ -143,43 +148,40 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         self.avatar_photo = file_name
         self.btn_add_photo.setText(file_name)
 
-    def show_error(self, text):
+    def __show_error(self, text):
         self.lbl_error.setText(str(text))
 
-    def get_grouped_data(self):
-        data = {
-            'name': self.get_name(),
-            'surname': self.get_surname(),
-            'email': self.get_email(),
-            'birthday': self.get_birthday(),
+    def __get_account_data(self):
+        return {
+            'name': self.__get_name(),
+            'surname': self.__get_surname(),
+            'email': self.__get_email(),
+            'birthday': self.__get_birthday(),
             'gender': self.cmb_gender.currentText()[0],  # First gender symbol
-            'password': self.get_password(),
+            'password': self.__get_password(),
             'portfolio_count': 0,
             'avatar_photo': self.avatar_photo
         }
 
-        return data
-
     def __create_account(self):
         try:
             # Check empty fields
-            self.check_empty_fields()
-            # Get registration data
-            data = self.get_grouped_data()
-            # Clean error label
-            self.show_error('')
+            if self.__is_fields_empty():
+                raise FormFillingError('Не все поля заполнены')
 
-            created = create_account(data)
+            data = self.__get_account_data()
+            self.__show_error('')
+
+            account_is_created = create_account(data)
 
             # If user was created
-            if not created:
-                self.show_error('Пользователь с такой почтой уже создан')
-                return
+            if not account_is_created:
+                raise FormFillingError('Пользователь с такой почтой уже создан')
 
-            save_current_user(data)
+            save_current_user_to_local(data)
             self.close()
         except FormFillingError as e:
-            self.show_error(e)
+            self.__show_error(e)
 
     def __login(self):
         login_app = LoginAccountApp()
