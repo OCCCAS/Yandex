@@ -50,14 +50,12 @@ class Profile(QWidget, Ui_Form):
         user_portfolio_data = get_user_portfolio()
 
         for portfolio_data in user_portfolio_data:
-            competitions_name = portfolio_data[1]
-            place = portfolio_data[2]
-            date = portfolio_data[3]
-            file_name = portfolio_data[-1]
-
-            portfolio_item = PortfolioItem(competitions_name, file_name, date, place)
-            feed_item = PortfolioFeedItem(portfolio_item)
-            self.feed_portfolio.add_item(feed_item)
+            title, place, date, photo_path = portfolio_data[1:]
+            self.feed_portfolio.add_item(
+                PortfolioFeedItem(
+                    PortfolioItem(title, photo_path, date, place)
+                )
+            )
 
         self.feed_portfolio.create()
 
