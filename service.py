@@ -99,7 +99,7 @@ def copy_portfolio_photo_to_local(file_name: str) -> str:
 
 
 # Save in local, that user is logged in
-def save_current_user(data: dict) -> None:
+def save_current_user_to_local(data: dict) -> None:
     with open('user.json', 'w') as json_file:
         json.dump(
             {
@@ -121,7 +121,7 @@ def edit_profile(name: str, surname: str, gender: str, birthday: int, photo: str
 
 
 # Increase portfolio photo count (in database)
-def increase_photo_count() -> None:
+def increase_photos_count() -> None:
     user_email = get_local_user_email()
     database_handler_.increase_portfolio_photo_count(user_email)
 
@@ -130,14 +130,10 @@ def increase_photo_count() -> None:
 def add_to_portfolio(competitions_name: str, place: str, date: int, photo: str) -> bool:
     user_email = get_local_user_email()
     photo = copy_portfolio_photo_to_local(photo)
-    increase_photo_count()
+    increase_photos_count()
 
-    try:
-        database_handler_.add_portfolio_to_portfolios(user_email, competitions_name, place, date, photo)
-        return True
-    except Exception as e:
-        print(e)
-        return False
+    database_handler_.add_portfolio_to_portfolios(user_email, competitions_name, place, date, photo)
+    return True
 
 
 # Get user portfolio
@@ -157,3 +153,6 @@ def get_all_user_data() -> Union[list, tuple]:
     user_email = get_local_user_email()
     return database_handler_.get_full_user_data(user_email)
 
+
+def check_login_data_correctness(login_data: dict) -> bool:
+    return database_handler_.check_login_data_correctness(login_data)

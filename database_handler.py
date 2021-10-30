@@ -64,5 +64,9 @@ class DatabaseHandler:
         data = self.cursor.execute('SELECT * FROM users WHERE email=?', (email,)).fetchone()
         return data[0] if data else tuple()
 
+    def check_login_data_correctness(self, login_data: dict) -> bool:
+        data = self.cursor.execute('SELECT password FROM users WHERE email=?', (login_data.get('email'))).fetchone()
+        return True if data and data[0] == login_data.get('password') else False
+
     def __del__(self):
         self.conn.close()
