@@ -50,7 +50,7 @@ color: white;
     <string>15 age</string>
    </property>
   </widget>
-  <widget class="QScrollArea" name="feed_portfolio">
+  <widget class="QPortfolioFeed" name="feed_portfolio">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -138,6 +138,14 @@ color: white;
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QPortfolioFeed</class>
+   <extends>QScrollArea</extends>
+   <header location="global">qportfoliofeed.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

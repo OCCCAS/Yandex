@@ -28,7 +28,7 @@ class Ui_Form(object):
         self.lbl_age = QtWidgets.QLabel(Form)
         self.lbl_age.setGeometry(QtCore.QRect(90, 50, 67, 17))
         self.lbl_age.setObjectName("lbl_age")
-        self.feed_portfolio = QtWidgets.QScrollArea(Form)
+        self.feed_portfolio = QPortfolioFeed(Form)
         self.feed_portfolio.setGeometry(QtCore.QRect(10, 210, 481, 551))
         self.feed_portfolio.setWidgetResizable(True)
         self.feed_portfolio.setObjectName("feed_portfolio")
@@ -72,3 +72,4 @@ class Ui_Form(object):
         self.lbl_age.setText(_translate("Form", "15 age"))
         self.btn_edit_profile.setText(_translate("Form", "Редактировать профиль"))
         self.lbl_name.setText(_translate("Form", "TImur Pavlov"))
+from qportfoliofeed import QPortfolioFeed

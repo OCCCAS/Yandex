@@ -1,5 +1,7 @@
 import shutil
 import os
+from typing import Union
+
 from database_handler import DatabaseHandler
 import config
 import json
@@ -9,26 +11,26 @@ database_handler_ = DatabaseHandler(config.DATABASE_PATH)
 
 
 # Check is user created account
-def check_login_exists(data):
+def check_login_exists(data: dict) -> bool:
     data = database_handler_.check_login_exists(data.get('email'), data.get('password'))
     return True if data else False
 
 
 # Creating file name for user avatar
-def create_local_avatar_file_name(email):
+def create_local_avatar_file_name(email: str) -> str:
     return f'user.{email}.avatar.png'
 
 
 # Creating file name for user portfolio photo
-def create_local_portfolio_file_name():
+def create_local_portfolio_file_name() -> str:
     user_email = hash_data(get_local_user_email())
-    photo_index = get_user_data_by_column(user_email, 'portfolio_count')
+    photo_index = get_user_data_by_column('portfolio_count', user_email)
 
     return f'{user_email}_{photo_index}.png'
 
 
 # Creating account
-def create_account(data):
+def create_account(data: dict) -> bool:
     if not check_login_exists(data.get('email')):
         data['avatar_photo'] = copy_avatar_photo_to_local(data.get('avatar_photo'))
 
@@ -39,19 +41,19 @@ def create_account(data):
 
 
 # Get user info from column
-def get_user_data_by_column(column_name, email):
-    data = database_handler_.get_user_data_by_column(column_name, email)
+def get_user_data_by_column(column: str, email: str) -> Union[int, float, str, bool]:
+    data = database_handler_.get_user_data_by_column(column, email)
     return data if data else False
 
 
 # Get user info from columns
-def get_user_data_by_columns(columns, email):
+def get_user_data_by_columns(columns: Union[list, tuple], email: str) -> Union[int, float, str, bool]:
     data = database_handler_.get_user_data_by_columns(columns, email)
     return data if data else False
 
 
 # Check is user logged in in his computer
-def is_user_logged_in_local():
+def is_user_logged_in_local() -> bool:
     with open('user.json', 'r') as file:
         data = json.load(file)
         file.close()
@@ -64,7 +66,7 @@ def is_user_logged_in_local():
 
 
 # Get user email which logged in in this computer (local)
-def get_local_user_email():
+def get_local_user_email() -> Union[str, bool]:
     with open('user.json', 'r') as json_:
         json_data = json.load(json_)
         json_.close()
@@ -76,7 +78,7 @@ def get_local_user_email():
 
 
 # Copy user avatar photo to application local path
-def copy_avatar_photo_to_local(file_name):
+def copy_avatar_photo_to_local(file_name: str) -> str:
     user_email = hash_data(get_local_user_email())
     new_file_name = create_local_avatar_file_name(user_email)
     new_file_path = os.path.join(config.AVATARS_PATH, new_file_name)
@@ -86,8 +88,18 @@ def copy_avatar_photo_to_local(file_name):
     return new_file_path
 
 
+# Copy user portfolio photo to application local path
+def copy_portfolio_photo_to_local(file_name: str) -> str:
+    new_file_name = create_local_portfolio_file_name()
+    new_file_path = os.path.join(config.PORTFOLIO_PATH, new_file_name)
+
+    shutil.copyfile(file_name, new_file_path)
+
+    return new_file_path
+
+
 # Save in local, that user is logged in
-def save_current_user(data):
+def save_current_user(data: dict) -> None:
     with open('user.json', 'w') as json_file:
         json.dump(
             {
@@ -98,18 +110,8 @@ def save_current_user(data):
         json_file.close()
 
 
-# Copy user portfolio photo to application local path
-def copy_portfolio_photo_to_local(file_name):
-    new_file_name = create_local_portfolio_file_name()
-    new_file_path = os.path.join(config.PORTFOLIO_PATH, new_file_name)
-
-    shutil.copyfile(file_name, new_file_path)
-
-    return new_file_path
-
-
 # Edit profile
-def edit_profile(name, surname, gender, birthday, photo):
+def edit_profile(name: str, surname: str, gender: str, birthday: int, photo: str) -> None:
     user_email = get_local_user_email()
     photo = copy_avatar_photo_to_local(photo)
 
@@ -119,13 +121,13 @@ def edit_profile(name, surname, gender, birthday, photo):
 
 
 # Increase portfolio photo count (in database)
-def increase_photo_count():
+def increase_photo_count() -> None:
     user_email = get_local_user_email()
     database_handler_.increase_portfolio_photo_count(user_email)
 
 
 # Add portfolio
-def add_to_portfolio(competitions_name, place, date, photo):
+def add_to_portfolio(competitions_name: str, place: str, date: int, photo: str) -> bool:
     user_email = get_local_user_email()
     photo = copy_portfolio_photo_to_local(photo)
     increase_photo_count()
@@ -139,18 +141,19 @@ def add_to_portfolio(competitions_name, place, date, photo):
 
 
 # Get user portfolio
-def get_user_portfolio():
+def get_user_portfolio() -> Union[list, tuple]:
     user_email = get_local_user_email()
     return database_handler_.get_portfolio(user_email)
 
 
 # Get path to user avatar
-def get_user_avatar_photo():
+def get_user_avatar_photo() -> str:
     user_email = get_local_user_email()
-    return get_user_data_by_column(user_email, 'avatar_photo')
+    return get_user_data_by_column('avatar_photo', user_email)
 
 
 # Get full user data
-def get_all_user_data():
+def get_all_user_data() -> Union[list, tuple]:
     user_email = get_local_user_email()
     return database_handler_.get_full_user_data(user_email)
+

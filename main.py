@@ -1,17 +1,16 @@
 import datetime
 import sys
-import glob
 
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QTextBrowser 
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QTextBrowser, QScrollArea
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 from py_ui.profile import Ui_Form
 
 from service import *
-from config import *
 from add_to_portfolio import AddToPortfolio
 from edit_profile import EditProfile
 from create_and_login_account import CreateAccountApp
+from qportfoliofeed import *
 
 
 class Profile(QWidget, Ui_Form):
@@ -21,10 +20,10 @@ class Profile(QWidget, Ui_Form):
         self.fill_profile_info()
         self.fill_portfolio_feed()
 
-        self.btn_add_img_to_portfolio.clicked.connect(self.add_el_to_portfolio)
-        self.btn_edit_profile.clicked.connect(self.edit_profile)
+        self.btn_add_img_to_portfolio.clicked.connect(self.__add_to_portfolio)
+        self.btn_edit_profile.clicked.connect(self.__edit_profile)
 
-    def edit_profile(self):
+    def __edit_profile(self) -> None:
         edit_profile_app = EditProfile()
         opened = edit_profile_app.exec_()
 
@@ -32,71 +31,54 @@ class Profile(QWidget, Ui_Form):
             self.fill_profile_info()
             self.set_profile_photo()
 
-    def add_el_to_portfolio(self):
+    def __add_to_portfolio(self) -> None:
         add_to_portfolio_app = AddToPortfolio()
         opened = add_to_portfolio_app.exec_()
 
         if not opened:
             self.fill_portfolio_feed()
+            self.set_profile_photo()
 
-    def clear_portfolio_feed(self):
-        layout = self.feed_portfolio.widget().setParent(None)
+    def clear_portfolio_feed(self) -> None:
+        # self.feed_portfolio has widget which has items and if we remove that widget we remove all portfolio items
+        self.feed_portfolio.widget().setParent(None)
 
     def fill_portfolio_feed(self):
         if self.feed_portfolio.widget().layout():
-            self.clear_portfolio_feed()
+            self.feed_portfolio.clear_and_emit()
 
-        images = QWidget()
-        images_layout = QVBoxLayout()
         user_portfolio_data = get_user_portfolio()
 
         for portfolio_data in user_portfolio_data:
-            file_name = portfolio_data[-1]
             competitions_name = portfolio_data[1]
-            date = datetime.datetime.fromtimestamp(portfolio_data[3]).strftime('%d.%m.%Y')
             place = portfolio_data[2]
-            
-            lbl = QLabel()
-            pixmap = QPixmap(file_name)
-            pixmap = pixmap.scaledToWidth(images.width() // 2)
-            lbl.setAlignment(Qt.AlignCenter)
-            lbl.setPixmap(pixmap)
+            date = portfolio_data[3]
+            file_name = portfolio_data[-1]
 
-            portfolio_title = QTextBrowser()
-            portfolio_title.setText(f'<h2 align="center">{competitions_name}</h2>')
-            portfolio_title.setStyleSheet('background-color: rgba(0, 0, 0, 0);')
+            portfolio_item = PortfolioItem(competitions_name, file_name, date, place)
+            feed_item = PortfolioFeedItem(portfolio_item)
+            self.feed_portfolio.add_item(feed_item)
 
-            portfolio_info = QTextBrowser()
-            portfolio_info.setText(f'<h3>Дата: {date}<br>Место: {place}</h3>')
-            portfolio_info.setStyleSheet('background-color: rgba(0, 0, 0, 0);')
-
-            images_layout.addWidget(portfolio_title)
-            images_layout.addWidget(lbl)
-            images_layout.addSpacing(5)
-            images_layout.addWidget(portfolio_info)
-            images_layout.addSpacing(20)
-
-        images.setLayout(images_layout)
-
-        self.feed_portfolio.setWidget(images)
+        self.feed_portfolio.create()
 
     @staticmethod
-    def get_profile_info():
+    def get_profile_info() -> dict:
         user_email = get_local_user_email()
 
         name, surname, birthday_timestamp = get_user_data_by_columns(
             ['name', 'surname', 'birthday'],
             user_email
         )
-        birthday = datetime.datetime.fromtimestamp(birthday_timestamp)
-        age = (datetime.datetime.now() - birthday).days // 365
-        
+        birthday_datetime = datetime.datetime.fromtimestamp(birthday_timestamp)
+        # Now datetime minus birthday datetime, then get days and divide it to days count in year
+        age = (datetime.datetime.now() - birthday_datetime).days // 365
+
         return {'name': f'{name} {surname}', 'age': age}
 
-    def set_profile_photo(self):
+    def set_profile_photo(self) -> None:
         self.lbl_profile_image.setPixmap(QPixmap(get_user_avatar_photo()))
 
-    def fill_profile_info(self):
+    def fill_profile_info(self) -> None:
         profile_info = self.get_profile_info()
         self.lbl_name.setText(profile_info.get('name'))
         self.lbl_name.adjustSize()
@@ -122,4 +104,3 @@ if __name__ == '__main__':
 
         sys.excepthook = except_hook
         sys.exit(app.exec())
-

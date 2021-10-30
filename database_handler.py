@@ -1,5 +1,5 @@
 import sqlite3
-from exceptions import *
+from typing import Union
 
 
 class DatabaseHandler:
@@ -7,13 +7,10 @@ class DatabaseHandler:
         self.conn = sqlite3.connect(database_filename, check_same_thread=False)
         self.cursor = self.conn.cursor()
 
-    def emit(self):
-        pass
-
     def __get_columns_name(self) -> list:
         return list(map(lambda item: item[1], self.cursor.execute('PRAGMA table_info(users)').fetchall()))
 
-    def create_account(self, data):
+    def create_account(self, data: Union[list, tuple]) -> bool:
         try:
             columns_name = self.__get_columns_name()
             self.cursor.execute(
@@ -23,66 +20,49 @@ class DatabaseHandler:
             return True
         except sqlite3.IntegrityError:
             return False
-        except Exception as e:
-            print(e)
-            return False
 
-    def check_login_exists(self, email, password):
-        try:
-            data = self.cursor.execute('SELECT * FROM users WHERE email=? AND password=?',
-                                       (email, password)).fetchone()
+    def check_login_exists(self, email: str, password: str) -> bool:
+        data = self.cursor.execute('SELECT * FROM users WHERE email=? AND password=?',
+                                   (email, password)).fetchone()
+        return True if data else False
 
-            return True if data else False
-        except Exception as e:
-            print(e)
-            return False
+    def get_user_data_by_column(self, column: str, email: str) -> Union[list, tuple]:
+        data = self.cursor.execute(f'SELECT {column} FROM users WHERE email=?', (email,)).fetchone()
+        return data[0] if data else tuple()
 
-    def get_user_data_by_column(self, column, email):
-        try:
-            data = self.cursor.execute(f'SELECT {column} FROM users WHERE email=?', (email,)).fetchone()[0]
-            return data
-        except Exception as e:
-            print(e)
-            return False
-
-    def get_user_data_by_columns(self, columns, email):
-        data = []
-        for column_name in columns:
-            data.append(self.get_user_data_by_column(column_name, email))
-
+    def get_user_data_by_columns(self, columns: Union[list, tuple], email: str) -> list:
+        data = [self.get_user_data_by_column(column, email) for column in columns]
         return data
 
-    def edit_user_data_by_column(self, column, new_data, email):
-        try:
-            self.cursor.execute(f'UPDATE users SET {column}=? WHERE email=?', (new_data, email))
-            self.conn.commit()
-        except Exception as e:
-            print(e)
-            return False
+    def edit_user_data_by_column(self, column: str, new_data: Union[str, int, float, bool], email: str) -> None:
+        self.cursor.execute(f'UPDATE users SET {column}=? WHERE email=?', (new_data, email))
+        self.conn.commit()
 
-    def edit_user_data_by_columns(self, columns, new_data, email):
+    def edit_user_data_by_columns(self, columns: Union[list, tuple], new_data: Union[list, tuple], email: str) -> None:
         if len(columns) != len(new_data):
             return
 
         for column, data_item in zip(columns, new_data):
             self.edit_user_data_by_column(column, data_item, email)
 
-    def increase_portfolio_photo_count(self, email):
+    def increase_portfolio_photo_count(self, email: str) -> None:
         self.cursor.execute('UPDATE users SET portfolio_count=portfolio_count + 1 WHERE email=?',
                             (email,))
         self.conn.commit()
 
-    def add_portfolio_to_portfolios(self, user_email, competitions_name, place, date, photo):
+    def add_portfolio_to_portfolios(self, user_email: str, competitions_name: str, place: str, date: int,
+                                    photo: str) -> None:
         self.cursor.execute(
             'INSERT INTO portfolio (email, competitions_name, place, date, photo) VALUES(?, ?, ?, ?, ?)',
             (user_email, competitions_name, place, date, photo))
         self.conn.commit()
 
-    def get_portfolio(self, email):
-        return self.cursor.execute('SELECT * FROM portfolio WHERE email=?', (email, )).fetchall()
+    def get_portfolio(self, email: str) -> list:
+        return self.cursor.execute('SELECT * FROM portfolio WHERE email=?', (email,)).fetchall()
 
-    def get_full_user_data(self, email):
-        return self.cursor.execute('SELECT * FROM users WHERE email=?', (email, )).fetchone()[0]
+    def get_full_user_data(self, email: str) -> Union[list, tuple]:
+        data = self.cursor.execute('SELECT * FROM users WHERE email=?', (email,)).fetchone()
+        return data[0] if data else tuple()
 
     def __del__(self):
         self.conn.close()
