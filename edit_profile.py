@@ -20,7 +20,7 @@ class EditProfile(QDialog, Ui_Dialog):
         self.btn_save_edits.clicked.connect(self.edit_profile)
 
     def fill_all_fields(self):
-        user_data = get_all_user_data()
+        user_data = get_full_user_data()
         name = user_data[1]
         surname = user_data[2]
         birthday = datetime.datetime.fromtimestamp(user_data[4])

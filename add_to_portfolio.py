@@ -45,9 +45,8 @@ class AddToPortfolio(QDialog, Ui_Form):
         self.lbl_error.adjustSize()
 
     def add_photo(self):
-        file_name = QFileDialog.getOpenFileName(
-            self, 'Выбрать картинку', '',
-            'Картинка (*.jpg);;Картинка (*.png);;Все файлы (*)')[0]
+        file_name = QFileDialog.getOpenFileName(self, 'Выбрать фотографию', '',
+                                                'Картинка (*.jpg, *.png);;Все файлы (*)')[0]
 
         self.portfolio_photo = file_name
         if file_name:

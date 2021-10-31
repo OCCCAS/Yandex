@@ -1,6 +1,6 @@
 import shutil
 import os
-from typing import Union
+from typing import Union, List, Tuple
 
 from database_handler import DatabaseHandler
 import config
@@ -12,8 +12,7 @@ database_handler_ = DatabaseHandler(config.DATABASE_PATH)
 
 # Check is user created account
 def check_login_exists(data: dict) -> bool:
-    data = database_handler_.check_login_exists(data.get('email'), data.get('password'))
-    return True if data else False
+    return database_handler_.check_login_exists(data.get('email'), data.get('password'))
 
 
 # Creating file name for user avatar
@@ -29,14 +28,32 @@ def create_local_portfolio_file_name() -> str:
     return f'{user_email}_{photo_index}.png'
 
 
+# Create own user path
+def create_user_path() -> None:
+    user_email = hash_data(get_local_user_email())
+    user_path = os.path.join(config.USERS_PATH, user_email)
+    user_portfolio_path = os.path.join(user_path, 'portfolio')
+
+    if not os.path.exists(user_path):
+        os.mkdir(user_path)
+        os.mkdir(user_portfolio_path)
+
+    # Create empty file, in order to git can`t delete this directory
+    with open(os.path.join(user_portfolio_path, '.empty'), 'w') as file:
+        file.write(' ')
+        file.close()
+
+
 # Creating account
 def create_account(data: dict) -> bool:
     if not check_login_exists(data):
         save_current_user_to_local(data)
+        create_user_path()
         data['avatar_photo'] = copy_avatar_photo_to_local(data.get('avatar_photo'))
+        data['post'] = get_post_id(data['post'])
 
-        database_handler_.create_account(list(data.values()))
-        return True
+        created = database_handler_.create_account(list(data.values()))
+        return created
     else:
         return False
 
@@ -82,7 +99,7 @@ def get_local_user_email() -> Union[str, bool]:
 def copy_avatar_photo_to_local(file_name: str) -> str:
     user_email = hash_data(get_local_user_email())
     new_file_name = create_local_avatar_file_name(user_email)
-    new_file_path = os.path.join(config.AVATARS_PATH, new_file_name)
+    new_file_path = os.path.join(os.path.join(config.USERS_PATH, user_email), new_file_name)
 
     shutil.copyfile(file_name, new_file_path)
 
@@ -91,8 +108,11 @@ def copy_avatar_photo_to_local(file_name: str) -> str:
 
 # Copy user portfolio photo to application local path
 def copy_portfolio_photo_to_local(file_name: str) -> str:
+    user_email = hash_data(get_local_user_email())
+    user_portfolio_path = os.path.join(os.path.join(config.USERS_PATH, user_email), 'portfolio')
+
     new_file_name = create_local_portfolio_file_name()
-    new_file_path = os.path.join(config.PORTFOLIO_PATH, new_file_name)
+    new_file_path = os.path.join(user_portfolio_path, new_file_name)
 
     shutil.copyfile(file_name, new_file_path)
 
@@ -116,7 +136,7 @@ def edit_profile(name: str, surname: str, gender: str, birthday: int, photo: str
     user_email = get_local_user_email()
     photo = copy_avatar_photo_to_local(photo)
 
-    database_handler_.edit_user_data_by_columns(['name', 'surname', 'birthday', 'gender', 'photo'],
+    database_handler_.edit_user_data_by_columns(['name', 'surname', 'birthday', 'gender', 'avatar_photo'],
                                                 [name, surname, birthday, gender, photo],
                                                 user_email)
 
@@ -150,7 +170,7 @@ def get_user_avatar_photo() -> str:
 
 
 # Get full user data
-def get_all_user_data() -> Union[list, tuple]:
+def get_full_user_data() -> Union[list, tuple]:
     user_email = get_local_user_email()
     return database_handler_.get_full_user_data(user_email)
 
@@ -170,3 +190,26 @@ def get_filing_error_text(error_name: str) -> str:
         return errors_message['errors_text'].get(error_name)
     else:
         return ''
+
+
+# Load task to database
+def create_task(title: str, text: str, date: int, photo: Union[str, None]) -> bool:
+    database_handler_.create_task(title, text, date, photo)
+    return True
+
+
+# Get tasks
+def get_tasks() -> List[Tuple]:
+    return database_handler_.get_tasks()
+
+
+# Get user post
+def get_user_post_id():
+    user_email = get_local_user_email()
+    return get_user_data_by_column('post', user_email)
+
+
+# Get post id from table, because post column is foreign key (table: posts)
+def get_post_id(post_name):
+    return database_handler_.get_post_id(post_name)
+

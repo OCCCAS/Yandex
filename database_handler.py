@@ -1,5 +1,5 @@
 import sqlite3
-from typing import Union
+from typing import Union, List, Tuple
 
 
 class DatabaseHandler:
@@ -14,7 +14,7 @@ class DatabaseHandler:
         try:
             columns_name = self.__get_columns_name()
             self.cursor.execute(
-                f"INSERT INTO users ({', '.join(columns_name[1:])}) "
+                f"INSERT or REPLACE INTO users ({', '.join(columns_name[1:])}) "
                 f"VALUES ({', '.join(['?'] * len(columns_name[1:]))})", data)
             self.conn.commit()
             return True
@@ -65,8 +65,20 @@ class DatabaseHandler:
         return data[0] if data else tuple()
 
     def check_login_data_correctness(self, login_data: dict) -> bool:
-        data = self.cursor.execute('SELECT password FROM users WHERE email=?', (login_data.get('email'))).fetchone()
-        return True if data and data[0] == login_data.get('password') else False
+        data = self.cursor.execute('SELECT password FROM users WHERE email=?', (login_data.get('email'),)).fetchone()
+        return True if data and data == login_data.get('password') else False
+
+    def create_task(self, title: str, text: str, date: int, photo: Union[str, None]) -> None:
+        self.cursor.execute('INSERT INTO tasks (title, text, date, photo) VALUES(?, ?, ?, ?)',
+                            (title, text, date, photo))
+        self.conn.commit()
+
+    def get_tasks(self) -> List[Tuple]:
+        return self.cursor.execute('SELECT * FROM tasks').fetchall()
+
+    def get_post_id(self, post_name: str) -> int:
+        data = self.cursor.execute('SELECT id FROM posts WHERE name=?', (post_name,)).fetchone()
+        return data[0] if data else -1 
 
     def __del__(self):
         self.conn.close()

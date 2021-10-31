@@ -1,91 +1,18 @@
-import sys
-
-from PyQt5.QtWidgets import QApplication
-
-from add_to_portfolio import AddToPortfolio
-from create_and_login_account import CreateAccountApp
-from edit_profile import EditProfile
-from py_ui.profile import Ui_Form
-from qportfoliofeed import *
+from profile import ChildrenProfile, TeacherProfile
+from tasks import *
 from service import *
+from PyQt5.QtWidgets import QApplication
+from create_and_login_account import CreateAccountApp
 
 
-class Profile(QWidget, Ui_Form):
+class ChildrenApp(ChildrenProfile, Tasks, QWidget):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
-        self.__fill_profile()
-        self.__fill_portfolio()
-
-        self.btn_add_img_to_portfolio.clicked.connect(self.__add_to_portfolio)
-        self.btn_edit_profile.clicked.connect(self.__edit_profile)
-
-    def __edit_profile(self) -> None:
-        """Open edit profile dialog and repaint profile info"""
-        edit_profile_app = EditProfile()
-        opened = edit_profile_app.exec_()
-
-        if not opened:
-            self.__fill_profile()
-
-    def __add_to_portfolio(self) -> None:
-        """Open add to portfolio dialog and repaint portfolio feed"""
-        add_to_portfolio_app = AddToPortfolio()
-        opened = add_to_portfolio_app.exec_()
-
-        if not opened:
-            self.__fill_portfolio()
-            self.__fill_profile()
-
-    def __fill_portfolio(self):
-        """Fill portfolio feed"""
-        if self.feed_portfolio.widget().layout():
-            self.feed_portfolio.clear_and_emit()
-
-        user_portfolio_data = get_user_portfolio()
-
-        for portfolio_data in user_portfolio_data:
-            title, place, date, photo_path = portfolio_data[1:]
-            self.feed_portfolio.add_item(
-                PortfolioFeedItem(
-                    PortfolioItem(title, photo_path, date, place)
-                )
-            )
-
-        self.feed_portfolio.create()
-
-    @staticmethod
-    def get_profile_info() -> dict:
-        """Get name and age in dict format"""
-        user_email = get_local_user_email()
-
-        name, surname, birthday_timestamp = get_user_data_by_columns(
-            ['name', 'surname', 'birthday'],
-            user_email
-        )
-        birthday_datetime = datetime.datetime.fromtimestamp(birthday_timestamp)
-        # Now datetime minus birthday datetime, then get days and divide it to days count in year
-        days_in_year = 365
-        age = (datetime.datetime.now() - birthday_datetime).days // days_in_year
-
-        return {'name': f'{name} {surname}', 'age': age}
-
-    def __set_profile_photo(self) -> None:
-        """Set profile avatar photo"""
-        self.lbl_profile_image.setPixmap(QPixmap(get_user_avatar_photo()))
-
-    def __fill_profile(self) -> None:
-        """Fill all profile info (photo, name, age and etc.)"""
-        profile_info = self.get_profile_info()
-        self.lbl_name.setText(profile_info.get('name'))
-        self.lbl_name.adjustSize()
-
-        self.lbl_age.setText(str(profile_info.get('age')) + ' лет')
-        self.__set_profile_photo()
 
 
-def except_hook(cls, exception, traceback):
-    sys.__excepthook__(cls, exception, traceback)
+class TeacherApp(TeacherProfile, ManageTasks, QWidget):
+    def __init__(self):
+        super().__init__()
 
 
 if __name__ == '__main__':
@@ -93,14 +20,23 @@ if __name__ == '__main__':
     # If account is creating
     crt_acc = False
 
-    # If user not logged in in local start creating account or logging to account
+    # If user not logged in in local, start creating account or logging to account
     if not is_user_logged_in_local():
         create_account_app_ = CreateAccountApp()
         crt_acc = create_account_app_.exec_()
 
     if not crt_acc and is_user_logged_in_local():
-        app_ = Profile()
-        app_.show()
+        post = get_user_post_id()
+        App = None
+
+        if post == 1:
+            App = TeacherApp
+        elif post == 2:
+            App = ChildrenApp
+
+        if App:
+            app_ = App()
+            app_.show()
 
         sys.excepthook = except_hook
         sys.exit(app.exec())

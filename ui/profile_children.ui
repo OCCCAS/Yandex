@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
+    <width>625</width>
     <height>822</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>505</width>
+     <width>605</width>
      <height>802</height>
     </rect>
    </property>
@@ -37,7 +37,7 @@
       <rect>
        <x>10</x>
        <y>210</y>
-       <width>481</width>
+       <width>581</width>
        <height>551</height>
       </rect>
      </property>
@@ -49,7 +49,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>479</width>
+        <width>579</width>
         <height>549</height>
        </rect>
       </property>
@@ -147,7 +147,7 @@ color: white;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../images/user.png</pixmap>
+      <pixmap>../../../.designer/images/user.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -158,6 +158,87 @@ color: white;
     <attribute name="title">
      <string>Задания</string>
     </attribute>
+    <widget class="QTableWidget" name="tbl_tasks">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>581</width>
+       <height>351</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="dragEnabled">
+      <bool>false</bool>
+     </property>
+     <property name="alternatingRowColors">
+      <bool>false</bool>
+     </property>
+     <property name="showGrid">
+      <bool>true</bool>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::SolidLine</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+     <property name="cornerButtonEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderCascadingSectionResizes">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>50</number>
+     </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Дата</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Название</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Содержание</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Фотография материала, примера</string>
+      </property>
+     </column>
+    </widget>
    </widget>
   </widget>
  </widget>

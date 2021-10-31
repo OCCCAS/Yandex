@@ -34,7 +34,7 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
             return False
 
     def __show_error(self, text):
-        self.lbl_info.setText(text)
+        self.lbl_info.setText(str(text))
         self.lbl_info.adjustSize()
 
     def __get_login_data(self) -> dict:
@@ -125,7 +125,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             raise FormFillingError(get_filing_error_text('invalid_email'))
 
         return email
-
+    
     def __is_fields_empty(self) -> bool:
         fields = [self.edit_name, self.edit_surname, self.edit_password]
 
@@ -137,7 +137,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
     def __choose_photo(self):
         file_name = QFileDialog.getOpenFileName(self, 'Выбрать фотографию', '',
-                                                'Картинка jpg (*.jpg);;Картинка png (*.png);;Все файлы (*)')[0]
+                                                'Картинка (*.jpg, *.png);;Все файлы (*)')[0]
 
         if not file_name:
             self.avatar_photo = DEFAULT_AVATAR_PATH
@@ -159,7 +159,8 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             'gender': self.cmb_gender.currentText()[0],  # First gender symbol
             'password': self.__get_password(),
             'portfolio_count': 0,
-            'avatar_photo': self.avatar_photo
+            'avatar_photo': self.avatar_photo,
+            'post': self.cmb_post.currentText()
         }
 
     def __create_account(self):

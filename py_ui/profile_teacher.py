@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/profile.ui'
+# Form implementation generated from reading ui file 'ui/profile_teacher.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.5
 #
@@ -14,19 +14,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(525, 822)
+        Form.resize(625, 822)
         Form.setStyleSheet("background-color: white;")
         self.tabWidget = QtWidgets.QTabWidget(Form)
-        self.tabWidget.setGeometry(QtCore.QRect(10, 10, 505, 802))
+        self.tabWidget.setGeometry(QtCore.QRect(10, 10, 605, 802))
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.feed_portfolio = QPortfolioFeed(self.tab)
-        self.feed_portfolio.setGeometry(QtCore.QRect(10, 210, 481, 551))
+        self.feed_portfolio.setGeometry(QtCore.QRect(10, 210, 581, 551))
         self.feed_portfolio.setWidgetResizable(True)
         self.feed_portfolio.setObjectName("feed_portfolio")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 479, 549))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 579, 549))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.feed_portfolio.setWidget(self.scrollAreaWidgetContents)
         self.btn_edit_profile = QtWidgets.QPushButton(self.tab)
@@ -63,12 +63,69 @@ class Ui_Form(object):
         self.lbl_profile_image = QtWidgets.QLabel(self.tab)
         self.lbl_profile_image.setGeometry(QtCore.QRect(10, 10, 65, 65))
         self.lbl_profile_image.setText("")
-        self.lbl_profile_image.setPixmap(QtGui.QPixmap("ui/../images/user.png"))
+        self.lbl_profile_image.setPixmap(QtGui.QPixmap("ui/../../../.designer/images/user.png"))
         self.lbl_profile_image.setScaledContents(True)
         self.lbl_profile_image.setObjectName("lbl_profile_image")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
+        self.btn_send = QtWidgets.QPushButton(self.tab_2)
+        self.btn_send.setGeometry(QtCore.QRect(400, 360, 191, 37))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_send.setFont(font)
+        self.btn_send.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_send.setObjectName("btn_send")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.tab_2)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 581, 331))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.edit_title = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.edit_title.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;")
+        self.edit_title.setObjectName("edit_title")
+        self.verticalLayout.addWidget(self.edit_title)
+        self.edit_text = QtWidgets.QPlainTextEdit(self.verticalLayoutWidget)
+        self.edit_text.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;")
+        self.edit_text.setObjectName("edit_text")
+        self.verticalLayout.addWidget(self.edit_text)
+        self.dtchoice_date = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        self.dtchoice_date.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;")
+        self.dtchoice_date.setObjectName("dtchoice_date")
+        self.verticalLayout.addWidget(self.dtchoice_date)
+        self.btn_add_material = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_material.setStyleSheet("background-color: #eeeeee;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"")
+        self.btn_add_material.setObjectName("btn_add_material")
+        self.verticalLayout.addWidget(self.btn_add_material)
+        self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label.setStyleSheet("color: red;")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
         self.tabWidget.addTab(self.tab_2, "")
 
         self.retranslateUi(Form)
@@ -83,5 +140,9 @@ class Ui_Form(object):
         self.lbl_age.setText(_translate("Form", "15 age"))
         self.btn_add_img_to_portfolio.setText(_translate("Form", "Добавить фото в портфолио"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Form", "Профиль"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Задания"))
+        self.btn_send.setText(_translate("Form", "Отправить"))
+        self.edit_title.setPlaceholderText(_translate("Form", "Заголовк"))
+        self.edit_text.setPlaceholderText(_translate("Form", "Текст задания"))
+        self.btn_add_material.setText(_translate("Form", "Загрузить пример, материал"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Создать задание"))
 from qportfoliofeed import QPortfolioFeed

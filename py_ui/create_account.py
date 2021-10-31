@@ -78,6 +78,24 @@ class Ui_Form(object):
         self.cmb_gender.addItem("")
         self.cmb_gender.addItem("")
         self.verticalLayout.addWidget(self.cmb_gender)
+        self.cmb_post = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.cmb_post.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.cmb_post.setLocale(QtCore.QLocale(QtCore.QLocale.Russian, QtCore.QLocale.Russia))
+        self.cmb_post.setEditable(False)
+        self.cmb_post.setInsertPolicy(QtWidgets.QComboBox.InsertAtTop)
+        self.cmb_post.setIconSize(QtCore.QSize(16, 16))
+        self.cmb_post.setDuplicatesEnabled(False)
+        self.cmb_post.setFrame(True)
+        self.cmb_post.setObjectName("cmb_post")
+        self.cmb_post.addItem("")
+        self.cmb_post.addItem("")
+        self.verticalLayout.addWidget(self.cmb_post)
         self.dtchoice_birthday = QtWidgets.QDateEdit(self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setKerning(False)
@@ -207,6 +225,8 @@ class Ui_Form(object):
         self.edit_email.setPlaceholderText(_translate("Form", "Почта"))
         self.cmb_gender.setItemText(0, _translate("Form", "Мальчик"))
         self.cmb_gender.setItemText(1, _translate("Form", "Девочка"))
+        self.cmb_post.setItemText(0, _translate("Form", "Ребенок"))
+        self.cmb_post.setItemText(1, _translate("Form", "Воспитатель"))
         self.dtchoice_birthday.setDisplayFormat(_translate("Form", "dd.MM.yyyy"))
         self.edit_password.setPlaceholderText(_translate("Form", "Пароль"))
         self.edit_password_again.setPlaceholderText(_translate("Form", "Пароль еще раз"))
