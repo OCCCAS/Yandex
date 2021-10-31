@@ -48,4 +48,6 @@ if __name__ == '__main__':
 
             sys.excepthook = except_hook
             sys.exit(app.exec())
+        else:
+            print('ERROR: invalid post id')
 
