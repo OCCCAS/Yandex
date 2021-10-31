@@ -29,6 +29,7 @@ if __name__ == '__main__':
         post = get_user_post_id()
         App = None
 
+        # 1 - teacher, 2 - children
         if post == 1:
             App = TeacherApp
         elif post == 2:
