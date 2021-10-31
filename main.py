@@ -34,6 +34,7 @@ if __name__ == '__main__':
     if not crt_acc and is_user_logged_in_local():
         post = get_user_post_id()
         teacher_post, children_post = 1, 2
+        # Application class
         App = None
 
         if post == teacher_post:
