@@ -5,14 +5,20 @@ from PyQt5.QtWidgets import QApplication
 from create_and_login_account import CreateAccountApp
 
 
+# unification of children profile and tasks design
 class ChildrenApp(ChildrenProfile, Tasks, QWidget):
     def __init__(self):
         super().__init__()
 
 
+# unification of teacher profile and tasks design
 class TeacherApp(TeacherProfile, ManageTasks, QWidget):
     def __init__(self):
         super().__init__()
+
+
+def except_hook(cls, exception, traceback):
+    sys.__excepthook__(cls, exception, traceback)
 
 
 if __name__ == '__main__':
@@ -27,16 +33,18 @@ if __name__ == '__main__':
 
     if not crt_acc and is_user_logged_in_local():
         post = get_user_post_id()
+        teacher_post, children_post = 1, 2
         App = None
 
-        if post == 1:
+        if post == teacher_post:
             App = TeacherApp
-        elif post == 2:
+        elif post == children_post:
             App = ChildrenApp
 
         if App:
             app_ = App()
             app_.show()
 
-        sys.excepthook = except_hook
-        sys.exit(app.exec())
+            sys.excepthook = except_hook
+            sys.exit(app.exec())
+
