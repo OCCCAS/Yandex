@@ -9,7 +9,7 @@ ___NOTE: Все используемые библиотеки находятся
 
 ## Файлы
 * [main.py](https://github.com/OCCCAS/Yandex/blob/master/main.py) <br>
-___Это основной файл, в котором находится лгика запуска программы (стразу запустить программу или начать регистрацию) и два основных класс ([ChildrenApp](#base-classes) и [TeacherApp](#base-classes))___
+___Это основной файл, в котором находится логика запуска программы (стразу запустить программу или начать регистрацию) и два основных класс ([ChildrenApp](#base-classes) и [TeacherApp](#base-classes))___
 * [service.py](https://github.com/OCCCAS/Yandex/blob/master/service.py) <br>
 ___В этом файле находится "бизнес логика приложения", обращение к базе данных ([через интерфейс обращения к базе данных](https://github.com/OCCCAS/Yandex/blob/master/database_handler.py)), сохранение и создание файлов, папок, логика создания аккаунта, входа в аккаунт и т.п___
 * [database_handler.py](https://github.com/OCCCAS/Yandex/blob/master/database_handler.py) <br>
@@ -21,7 +21,7 @@ ___В этом файле находятся вспомогательные фу
 * [config.py](https://github.com/OCCCAS/Yandex/blob/master/config.py) <br>
 ___В этом файле находтся основные константы (абсолютный путь к приложению, абсолютные пути к файлам и т.п)___
 * [exceptions.py](https://github.com/OCCCAS/Yandex/blob/master/exceptions.py) <br>
-___В этом файле находятся exception-ы ипользуемые в приложении___
+___В этом файле находятся exception-ы используемые в приложении___
 * [application_basement.py](https://github.com/OCCCAS/Yandex/blob/master/application_basement.py) <br>
 ___В этом файле находится паттерн создания классов___
 * [validator.py](https://github.com/OCCCAS/Yandex/blob/master/validators.py) <br>
