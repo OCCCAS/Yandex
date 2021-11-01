@@ -16,8 +16,9 @@ def check_login_exists(data: dict) -> bool:
 
 
 # Creating file name for user avatar
-def create_local_avatar_file_name(email: str) -> str:
-    return f'user.{email}.avatar.png'
+def create_local_avatar_file_name() -> str:
+    user_email = hash_data(get_local_user_email())
+    return f'user.{user_email}.avatar.png'
 
 
 # Creating file name for user portfolio photo
@@ -94,7 +95,7 @@ def get_local_user_email() -> Union[str, bool]:
 # Copy user avatar photo to application local path
 def copy_avatar_photo_to_local(file_name: str) -> str:
     user_email = hash_data(get_local_user_email())
-    new_file_name = create_local_avatar_file_name(user_email)
+    new_file_name = create_local_avatar_file_name()
     new_file_path = os.path.join(os.path.join(config.USERS_PATH, user_email), new_file_name)
 
     shutil.copyfile(file_name, new_file_path)
