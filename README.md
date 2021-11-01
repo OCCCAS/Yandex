@@ -7,8 +7,8 @@
     2. [Windows](#install-windows)
 3. [Функции](#funstions)
 4. [Цель](#purpose)
-5. [ТЗ](https://github.com/OCCCAS/Yandex/blob/master/TS.md)
-6. [Пояснительная записка](https://github.com/OCCCAS/Yandex/blob/master/ExplanatoryNote.md)
+5. [ТЗ](https://github.com/OCCCAS/Yandex/blob/master/resources/TS.md)
+6. [Пояснительная записка](https://github.com/OCCCAS/Yandex/blob/master/resources/ExplanatoryNote.md)
 
 ## <span id="about-project">О проекте</span>
 <p>Это приложение для детей, родителей и воспитателей.<br>
