@@ -212,4 +212,3 @@ def get_user_post_id():
 # Get post id from table, because post column is foreign key (table: posts)
 def get_post_id(post_name):
     return database_handler_.get_post_id(post_name)
-

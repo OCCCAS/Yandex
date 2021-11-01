@@ -50,4 +50,5 @@ if __name__ == '__main__':
             sys.exit(app.exec())
         else:
             print('ERROR: invalid post id')
+            sys.exit(1)
 
