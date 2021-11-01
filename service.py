@@ -24,6 +24,7 @@ def create_local_avatar_file_name(email: str) -> str:
 def create_local_portfolio_file_name() -> str:
     user_email = hash_data(get_local_user_email())
     photo_index = get_user_data_by_column('portfolio_count', user_email)
+    photo_index = 0 if not photo_index else photo_index
 
     return f'{user_email}_{photo_index}.png'
 

@@ -62,7 +62,7 @@ class DatabaseHandler:
 
     def get_full_user_data(self, email: str) -> Union[list, tuple]:
         data = self.cursor.execute('SELECT * FROM users WHERE email=?', (email,)).fetchone()
-        return data[0] if data else tuple()
+        return data if data else tuple()
 
     def check_login_data_correctness(self, login_data: dict) -> bool:
         data = self.cursor.execute('SELECT password FROM users WHERE email=?', (login_data.get('email'),)).fetchone()

@@ -81,7 +81,8 @@ class Profile(QWidget):
         self.lbl_name.setText(profile_info.get('name'))
         self.lbl_name.adjustSize()
 
-        self.lbl_age.setText(str(profile_info.get('age')) + ' лет')
+        self.lbl_age.setText('Возраст: ' + str(profile_info.get('age')))
+        self.lbl_age.adjustSize()
         self.__set_profile_photo()
 
 
