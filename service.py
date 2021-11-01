@@ -39,11 +39,6 @@ def create_user_path() -> None:
         os.mkdir(user_path)
         os.mkdir(user_portfolio_path)
 
-    # Create empty file, in order to git can`t delete this directory
-    with open(os.path.join(user_portfolio_path, '.empty'), 'w') as file:
-        file.write(' ')
-        file.close()
-
 
 # Creating account
 def create_account(data: dict) -> bool:
@@ -73,7 +68,7 @@ def get_user_data_by_columns(columns: Union[list, tuple], email: str) -> Union[i
 
 # Check is user logged in in his computer
 def is_user_logged_in_local() -> bool:
-    with open('user.json', 'r') as file:
+    with open('user.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
         file.close()
 
@@ -86,7 +81,7 @@ def is_user_logged_in_local() -> bool:
 
 # Get user email which logged in in this computer (local)
 def get_local_user_email() -> Union[str, bool]:
-    with open('user.json', 'r') as json_:
+    with open('user.json', 'r', encoding='utf-8') as json_:
         json_data = json.load(json_)
         json_.close()
 
@@ -122,7 +117,7 @@ def copy_portfolio_photo_to_local(file_name: str) -> str:
 
 # Save in local, that user is logged in
 def save_current_user_to_local(data: dict) -> None:
-    with open('user.json', 'w') as json_file:
+    with open('user.json', 'w', encoding='utf-8') as json_file:
         json.dump(
             {
                 'user': {
@@ -183,7 +178,7 @@ def check_login_data_correctness(login_data: dict) -> bool:
 
 # Read program messages file, and return message
 def get_filing_error_text(error_name: str) -> str:
-    with open('program_messages.json', 'r') as json_file:
+    with open('program_messages.json', 'r', encoding='utf-8') as json_file:
         errors_message = json.load(json_file)
         json_file.close()
 
