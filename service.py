@@ -174,8 +174,7 @@ def get_full_user_data() -> Union[list, tuple]:
 
 
 # Check login data correctness
-def check_login_data_correctness(login_data: dict) -> bool:
-    return database_handler_.check_login_data_correctness(login_data)
+def check_login_data_correctness(login_data: dict) -> bool: return database_handler_.check_login_data_correctness(login_data)
 
 
 # Read program messages file, and return message
@@ -202,11 +201,21 @@ def get_tasks() -> List[Tuple]:
 
 
 # Get user post
-def get_user_post_id():
+def get_user_post_id() -> str:
     user_email = get_local_user_email()
     return get_user_data_by_column('post', user_email)
 
 
 # Get post id from table, because post column is foreign key (table: posts)
-def get_post_id(post_name):
-    return database_handler_.get_post_id(post_name)
+def get_post_id(post_name: str) -> int: return database_handler_.get_post_id(post_name)
+
+
+# Get list of children (if post = 2)
+def get_children_list() -> list: return database_handler_.get_children_list()
+
+
+def create_class(children_email: List[str]) -> bool:
+    user_email = get_local_user_email()
+    database_handler_.create_class(user_email, children_email)
+    return True
+

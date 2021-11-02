@@ -19,7 +19,11 @@ if choose in ['t', 'c']:
     data['user']['email'] = email
     with open('user.json', 'w') as json_file:
         json.dump(data, json_file)
+        print('Done! User was swiched')
         json_file.close()
-
-    print('Done! User was swiched')
+else:
+    print('Use:\n'
+          '\t(t or c): t\n'
+          '\tOR\n'
+          '\t(t or c): c')
 

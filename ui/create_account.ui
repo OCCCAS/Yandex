@@ -31,7 +31,7 @@
      <x>520</x>
      <y>120</y>
      <width>341</width>
-     <height>321</height>
+     <height>341</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -396,9 +396,9 @@ border: 2px solid #eeeeee;
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>450</y>
+     <y>480</y>
      <width>339</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -412,7 +412,7 @@ border: 2px solid #eeeeee;
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>510</y>
+     <y>540</y>
      <width>339</width>
      <height>37</height>
     </rect>

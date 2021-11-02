@@ -1,41 +1,42 @@
-import py_ui.profile_children
 import py_ui.profile_teacher
-
 from add_to_portfolio import AddToPortfolio
 from edit_profile import EditProfile
+from py_ui import profile_teacher
 
 from qportfoliofeed import *
 
 from service import *
 
 
-class Profile(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.__fill_profile()
-        self.__fill_portfolio()
+class ProfileTab(QWidget, profile_teacher.Ui_Form):
+    def __init__(self, parent=None):
+        super(QWidget, self).__init__()
 
-        self.btn_add_img_to_portfolio.clicked.connect(self.__add_to_portfolio)
-        self.btn_edit_profile.clicked.connect(self.__edit_profile)
+        self.setupUi(parent)
+        self.fill_profile()
+        self.fill_portfolio()
 
-    def __edit_profile(self) -> None:
+        self.btn_add_img_to_portfolio.clicked.connect(self.add_to_portfolio)
+        self.btn_edit_profile.clicked.connect(self.edit_profile)
+
+    def edit_profile(self) -> None:
         """Open edit profile dialog and repaint profile info"""
         edit_profile_app = EditProfile()
         opened = edit_profile_app.exec_()
 
         if not opened:
-            self.__fill_profile()
+            self.fill_profile()
 
-    def __add_to_portfolio(self) -> None:
+    def add_to_portfolio(self) -> None:
         """Open add to portfolio dialog and repaint portfolio feed"""
         add_to_portfolio_app = AddToPortfolio()
         opened = add_to_portfolio_app.exec_()
 
         if not opened:
-            self.__fill_portfolio()
-            self.__fill_profile()
+            self.fill_portfolio()
+            self.fill_profile()
 
-    def __fill_portfolio(self):
+    def fill_portfolio(self):
         """Fill portfolio feed"""
         if self.feed_portfolio.widget().layout():
             self.feed_portfolio.clear_and_emit()
@@ -68,11 +69,11 @@ class Profile(QWidget):
 
         return {'name': f'{name} {surname}', 'age': age}
 
-    def __set_profile_photo(self) -> None:
+    def set_profile_photo(self) -> None:
         """Set profile avatar photo"""
         self.lbl_profile_image.setPixmap(QPixmap(get_user_avatar_photo()))
 
-    def __fill_profile(self) -> None:
+    def fill_profile(self) -> None:
         """Fill all profile info (photo, name, age and etc.)"""
         profile_info = self.get_profile_info()
         self.lbl_name.setText(profile_info.get('name'))
@@ -80,5 +81,5 @@ class Profile(QWidget):
 
         self.lbl_age.setText('Возраст: ' + str(profile_info.get('age')))
         self.lbl_age.adjustSize()
-        self.__set_profile_photo()
+        self.set_profile_photo()
 

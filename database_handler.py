@@ -78,7 +78,25 @@ class DatabaseHandler:
 
     def get_post_id(self, post_name: str) -> int:
         data = self.cursor.execute('SELECT id FROM posts WHERE name=?', (post_name,)).fetchone()
-        return data[0] if data else -1 
+        return data[0] if data else -1
+
+    def get_children_list(self) -> list:
+        # 2 - children post id
+        return self.cursor.execute('SELECT * FROM users WHERE post=2').fetchall()
+
+    def create_class(self, director_email: str, children_emails: List[str]) -> None:
+        self.cursor.execute('INSERT or REPLACE INTO classes(director) '
+                            'VALUES((SELECT id FROM users WHERE email=?))',
+                            (director_email,))
+        self.conn.commit()
+        class_id = self.cursor.execute('SELECT id FROM classes WHERE '
+                                       'director=(SELECT id FROM users WHERE email=?)',
+                                       (director_email, )).fetchone()[0]
+
+        for email in children_emails:
+            self.cursor.execute('UPDATE users SET class=? WHERE email=?', (class_id, email))
+
+        self.conn.commit()
 
     def __del__(self):
         self.conn.close()

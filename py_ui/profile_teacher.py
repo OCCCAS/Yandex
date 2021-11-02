@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(625, 822)
+        Form.resize(615, 822)
         Form.setStyleSheet("background-color: white;")
         self.tabWidget = QtWidgets.QTabWidget(Form)
         self.tabWidget.setGeometry(QtCore.QRect(10, 10, 605, 802))
@@ -134,6 +134,81 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.tabWidget.addTab(self.tab_2, "")
+        self.tab_3 = QtWidgets.QWidget()
+        self.tab_3.setObjectName("tab_3")
+        self.label_2 = QtWidgets.QLabel(self.tab_3)
+        self.label_2.setGeometry(QtCore.QRect(6, 5, 581, 41))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet("color: #333c56;")
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(self.tab_3)
+        self.label_3.setGeometry(QtCore.QRect(6, 315, 581, 41))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("color: #333c56;")
+        self.label_3.setObjectName("label_3")
+        self.tbl_class = QtWidgets.QTableWidget(self.tab_3)
+        self.tbl_class.setGeometry(QtCore.QRect(6, 55, 581, 251))
+        self.tbl_class.setObjectName("tbl_class")
+        self.tbl_class.setColumnCount(3)
+        self.tbl_class.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tbl_class.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tbl_class.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tbl_class.setHorizontalHeaderItem(2, item)
+        self.btn_create_class = QtWidgets.QPushButton(self.tab_3)
+        self.btn_create_class.setGeometry(QtCore.QRect(303, 440, 286, 37))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_create_class.setFont(font)
+        self.btn_create_class.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_create_class.setObjectName("btn_create_class")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self.tab_3)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 370, 579, 52))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.cmb_name = QtWidgets.QComboBox(self.horizontalLayoutWidget)
+        self.cmb_name.setStyleSheet("background-color: #ffffff;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"\n"
+"")
+        self.cmb_name.setObjectName("cmb_name")
+        self.cmb_name.addItem("")
+        self.horizontalLayout.addWidget(self.cmb_name)
+        self.btn_add = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_add.setFont(font)
+        self.btn_add.setStyleSheet("background-color: #eeeeee;\n"
+"border-radius: 5px;\n"
+"color: black;\n"
+"padding: 10px;\n"
+"border: 2px solid #eeeeee;\n"
+"")
+        self.btn_add.setObjectName("btn_add")
+        self.horizontalLayout.addWidget(self.btn_add)
+        self.tabWidget.addTab(self.tab_3, "")
 
         self.retranslateUi(Form)
         self.tabWidget.setCurrentIndex(0)
@@ -152,4 +227,16 @@ class Ui_Form(object):
         self.edit_text.setPlaceholderText(_translate("Form", "Текст задания"))
         self.btn_add_material.setText(_translate("Form", "Загрузить пример, материал"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Создать задание"))
+        self.label_2.setText(_translate("Form", "Ваш класс:"))
+        self.label_3.setText(_translate("Form", "Добавить ребенка:"))
+        item = self.tbl_class.horizontalHeaderItem(0)
+        item.setText(_translate("Form", "Имя"))
+        item = self.tbl_class.horizontalHeaderItem(1)
+        item.setText(_translate("Form", "Почта"))
+        item = self.tbl_class.horizontalHeaderItem(2)
+        item.setText(_translate("Form", "День рождения"))
+        self.btn_create_class.setText(_translate("Form", "Создать класс"))
+        self.cmb_name.setItemText(0, _translate("Form", "<Имя>"))
+        self.btn_add.setText(_translate("Form", "Добавить"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Создать класс"))
 from qportfoliofeed import QPortfolioFeed

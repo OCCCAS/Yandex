@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
+    <width>615</width>
     <height>822</height>
    </rect>
   </property>
@@ -277,6 +277,160 @@ border: 2px solid #eeeeee;
         </property>
         <property name="text">
          <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>Создать класс</string>
+    </attribute>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>6</x>
+       <y>5</y>
+       <width>581</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #333c56;</string>
+     </property>
+     <property name="text">
+      <string>Ваш класс:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>6</x>
+       <y>315</y>
+       <width>581</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #333c56;</string>
+     </property>
+     <property name="text">
+      <string>Добавить ребенка:</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tbl_class">
+     <property name="geometry">
+      <rect>
+       <x>6</x>
+       <y>55</y>
+       <width>581</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Имя</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Почта</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>День рождения</string>
+      </property>
+     </column>
+    </widget>
+    <widget class="QPushButton" name="btn_create_class">
+     <property name="geometry">
+      <rect>
+       <x>303</x>
+       <y>440</y>
+       <width>286</width>
+       <height>37</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding: 10px;
+background-color: #4654f9;
+border-width: 2px;
+border-radius: 5px;
+color: white;
+</string>
+     </property>
+     <property name="text">
+      <string>Создать класс</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>370</y>
+       <width>579</width>
+       <height>52</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QComboBox" name="cmb_name">
+        <property name="styleSheet">
+         <string notr="true">background-color: #ffffff;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+
+</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>&lt;Имя&gt;</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_add">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #eeeeee;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+</string>
+        </property>
+        <property name="text">
+         <string>Добавить</string>
         </property>
        </widget>
       </item>
