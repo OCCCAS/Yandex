@@ -71,7 +71,7 @@ class QPortfolioFeed(QScrollArea):
         self.feed_widget_layout.addWidget(item)
         self.feed_widget_layout.addSpacing(20)
 
-    def create(self):
+    def create_(self):
         self.feed_widget = QWidget()
         self.feed_widget.setLayout(self.feed_widget_layout)
         self.setWidget(self.feed_widget)
