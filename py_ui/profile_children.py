@@ -34,6 +34,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setPointSize(8)
         self.btn_edit_profile.setFont(font)
+        self.btn_edit_profile.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_edit_profile.setStyleSheet("background-color: #4654f9;\n"
 "border-width: 2px;\n"
 "border-radius: 5px;\n"
@@ -53,6 +54,7 @@ class Ui_Form(object):
         self.lbl_age.setObjectName("lbl_age")
         self.btn_add_img_to_portfolio = QtWidgets.QPushButton(self.tab)
         self.btn_add_img_to_portfolio.setGeometry(QtCore.QRect(10, 160, 226, 39))
+        self.btn_add_img_to_portfolio.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_add_img_to_portfolio.setStyleSheet("padding: 10px;\n"
 "background-color: #4654f9;\n"
 "border-width: 2px;\n"

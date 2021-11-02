@@ -1,16 +1,21 @@
-from profile import ChildrenProfile, TeacherProfile
-from tasks import *
+from PyQt5.QtWidgets import QWidget
+
+from profile import Profile
+from tasks import Tasks, ManageTasks
+import py_ui.profile_teacher
+import py_ui.profile_children
 
 
 # unification of children profile and tasks design
-class ChildrenApp(ChildrenProfile, Tasks, QWidget):
+class ChildrenApp(Profile, Tasks, py_ui.profile_children.Ui_Form):
     def __init__(self):
-        super().__init__()
+        Tasks.__init__(self)
+        Profile.__init__(self)
 
 
 # unification of teacher profile and tasks design
-class TeacherApp(TeacherProfile, ManageTasks, QWidget):
+class TeacherApp(Profile, ManageTasks, py_ui.profile_teacher.Ui_Form):
     def __init__(self):
-        super().__init__()
-
+        ManageTasks.__init__(self)
+        Profile.__init__(self)
 

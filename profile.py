@@ -1,20 +1,17 @@
-import sys
-
-from PyQt5.QtWidgets import QApplication
-
-from add_to_portfolio import AddToPortfolio
-from create_and_login_account import CreateAccountApp
-from edit_profile import EditProfile
 import py_ui.profile_children
 import py_ui.profile_teacher
+
+from add_to_portfolio import AddToPortfolio
+from edit_profile import EditProfile
+
 from qportfoliofeed import *
+
 from service import *
 
 
 class Profile(QWidget):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
         self.__fill_profile()
         self.__fill_portfolio()
 
@@ -53,7 +50,7 @@ class Profile(QWidget):
                 )
             )
 
-        self.feed_portfolio.create()
+        self.feed_portfolio.create_()
 
     @staticmethod
     def get_profile_info() -> dict:
@@ -85,12 +82,3 @@ class Profile(QWidget):
         self.lbl_age.adjustSize()
         self.__set_profile_photo()
 
-
-class ChildrenProfile(Profile, py_ui.profile_children.Ui_Form):
-    def __init__(self):
-        super().__init__()
-
-
-class TeacherProfile(Profile, py_ui.profile_teacher.Ui_Form):
-    def __init__(self):
-        super().__init__()

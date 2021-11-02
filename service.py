@@ -1,13 +1,12 @@
-import shutil
-import os
 from typing import Union, List, Tuple
 
-from apps import TeacherApp, ChildrenApp
-from create_and_login_account import CreateAccountApp
 from database_handler import DatabaseHandler
+from utils import *
+
 import config
 import json
-from utils import *
+import shutil
+import os
 
 database_handler_ = DatabaseHandler(config.DATABASE_PATH)
 
@@ -211,25 +210,3 @@ def get_user_post_id():
 # Get post id from table, because post column is foreign key (table: posts)
 def get_post_id(post_name):
     return database_handler_.get_post_id(post_name)
-
-
-# If user not logged in in local, start creating account or logging to account
-def start_login_if_needs():
-    if not is_user_logged_in_local():
-        create_account_app_ = CreateAccountApp()
-        return create_account_app_.exec_()
-
-
-def start_main_app_with_post_verification():
-    post = get_user_post_id()
-    teacher_post, children_post = 1, 2
-    # Application class
-    app = None
-
-    if post == teacher_post:
-        app = TeacherApp
-    elif post == children_post:
-        app = ChildrenApp
-
-    return app().show() if app else False
-

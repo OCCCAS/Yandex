@@ -69,6 +69,9 @@
        <pointsize>8</pointsize>
       </font>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: #4654f9;
 border-width: 2px;
@@ -121,6 +124,9 @@ color: white;
        <width>226</width>
        <height>39</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">padding: 10px;

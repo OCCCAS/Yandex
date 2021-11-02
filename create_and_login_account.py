@@ -2,10 +2,12 @@ from PyQt5.QtWidgets import QDialog, QFileDialog
 
 import py_ui.create_account
 import py_ui.login_account
+
 from config import *
 from exceptions import *
 from service import *
 from validators import *
+from utils import *
 
 
 class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
@@ -125,7 +127,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             raise FormFillingError(get_filing_error_text('invalid_email'))
 
         return email
-    
+
     def __is_fields_empty(self) -> bool:
         fields = [self.edit_name, self.edit_surname, self.edit_password]
 

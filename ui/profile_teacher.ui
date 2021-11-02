@@ -25,10 +25,16 @@
      <height>802</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
    <property name="currentIndex">
     <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
     <attribute name="title">
      <string>Профиль</string>
     </attribute>
@@ -68,6 +74,9 @@
       <font>
        <pointsize>8</pointsize>
       </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: #4654f9;
@@ -122,6 +131,9 @@ color: white;
        <height>39</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">padding: 10px;
 background-color: #4654f9;
@@ -155,6 +167,9 @@ color: white;
     </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
     <attribute name="title">
      <string>Создать задание</string>
     </attribute>
@@ -172,6 +187,9 @@ color: white;
        <weight>75</weight>
        <bold>true</bold>
       </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">padding: 10px;
@@ -236,6 +254,9 @@ border: 2px solid #eeeeee;</string>
       </item>
       <item>
        <widget class="QPushButton" name="btn_add_material">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: #eeeeee;
 border-radius: 5px;

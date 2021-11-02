@@ -18,8 +18,10 @@ class Ui_Form(object):
         Form.setStyleSheet("background-color: white;")
         self.tabWidget = QtWidgets.QTabWidget(Form)
         self.tabWidget.setGeometry(QtCore.QRect(10, 10, 605, 802))
+        self.tabWidget.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
+        self.tab.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.tab.setObjectName("tab")
         self.feed_portfolio = QPortfolioFeed(self.tab)
         self.feed_portfolio.setGeometry(QtCore.QRect(10, 210, 581, 551))
@@ -34,6 +36,7 @@ class Ui_Form(object):
         font = QtGui.QFont()
         font.setPointSize(8)
         self.btn_edit_profile.setFont(font)
+        self.btn_edit_profile.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_edit_profile.setStyleSheet("background-color: #4654f9;\n"
 "border-width: 2px;\n"
 "border-radius: 5px;\n"
@@ -53,6 +56,7 @@ class Ui_Form(object):
         self.lbl_age.setObjectName("lbl_age")
         self.btn_add_img_to_portfolio = QtWidgets.QPushButton(self.tab)
         self.btn_add_img_to_portfolio.setGeometry(QtCore.QRect(10, 160, 226, 39))
+        self.btn_add_img_to_portfolio.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_add_img_to_portfolio.setStyleSheet("padding: 10px;\n"
 "background-color: #4654f9;\n"
 "border-width: 2px;\n"
@@ -68,6 +72,7 @@ class Ui_Form(object):
         self.lbl_profile_image.setObjectName("lbl_profile_image")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.tab_2.setObjectName("tab_2")
         self.btn_send = QtWidgets.QPushButton(self.tab_2)
         self.btn_send.setGeometry(QtCore.QRect(400, 360, 191, 37))
@@ -75,6 +80,7 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_send.setFont(font)
+        self.btn_send.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_send.setStyleSheet("padding: 10px;\n"
 "background-color: #4654f9;\n"
 "border-width: 2px;\n"
@@ -113,6 +119,7 @@ class Ui_Form(object):
         self.dtchoice_date.setObjectName("dtchoice_date")
         self.verticalLayout.addWidget(self.dtchoice_date)
         self.btn_add_material = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_material.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_add_material.setStyleSheet("background-color: #eeeeee;\n"
 "border-radius: 5px;\n"
 "color: black;\n"

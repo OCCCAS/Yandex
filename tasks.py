@@ -46,7 +46,13 @@ class ManageTasks(QWidget):
 
         if created:
             if QMessageBox.information(self, 'Успешно!', 'Задача успешно отправлена'):
-                self.close()
+                self.__clear_all_fields()
+
+    def __clear_all_fields(self):
+        self.edit_title.clear()
+        self.edit_text.clear()
+        self.__material_photo = None
+        self.btn_add_material.setText('Загрузить пример, материал')
 
 
 class Tasks(QWidget):
