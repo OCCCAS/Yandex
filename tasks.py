@@ -2,15 +2,16 @@ import datetime
 
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QFileDialog, QMessageBox
 
-from py_ui import profile_teacher
 from service import *
+import py_ui.manage_tasks
+import py_ui.tasks
 
 
-class ManageTasksTab(QWidget, profile_teacher.Ui_Form):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__()
+class ManageTasksTab(QWidget, py_ui.manage_tasks.Ui_Form):
+    def __init__(self):
+        super(ManageTasksTab, self).__init__()
 
-        self.setupUi(parent)
+        self.setupUi(self)
 
         self.__material_photo = None
         self.btn_add_material.clicked.connect(self.choice_photo)
@@ -55,10 +56,11 @@ class ManageTasksTab(QWidget, profile_teacher.Ui_Form):
         self.btn_add_material.setText('Загрузить пример, материал')
 
 
-class TasksTab(QWidget):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__(parent)
-        self.setupUi(parent)
+class TasksTab(QWidget, py_ui.tasks.Ui_Form):
+    def __init__(self):
+        super(TasksTab, self).__init__()
+        self.setupUi(self)
+
         self.fill_table()
 
     def fill_table(self):

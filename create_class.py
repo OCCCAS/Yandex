@@ -2,15 +2,15 @@ import datetime
 
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QMessageBox
 
-from py_ui import profile_teacher
+from py_ui.create_class import Ui_Form
 from service import *
 
 
-class CreateClassTab(QWidget, profile_teacher.Ui_Form):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__()
-        self.setupUi(parent)
+class CreateClassTab(QWidget, Ui_Form):
+    def __init__(self):
+        super(CreateClassTab, self).__init__()
 
+        self.setupUi(self)
         self.fill_name_combobox()
 
         self.btn_add.clicked.connect(self.add_children_to_class_table)

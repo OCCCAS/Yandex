@@ -1,18 +1,17 @@
-import py_ui.profile_teacher
 from add_to_portfolio import AddToPortfolio
 from edit_profile import EditProfile
-from py_ui import profile_teacher
+from py_ui.profile import Ui_Form
 
 from qportfoliofeed import *
 
 from service import *
 
 
-class ProfileTab(QWidget, profile_teacher.Ui_Form):
-    def __init__(self, parent=None):
-        super(QWidget, self).__init__()
+class ProfileTab(QWidget, Ui_Form):
+    def __init__(self):
+        super(ProfileTab, self).__init__()
 
-        self.setupUi(parent)
+        self.setupUi(self)
         self.fill_profile()
         self.fill_portfolio()
 
