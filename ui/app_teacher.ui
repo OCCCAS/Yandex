@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>615</width>
+    <height>822</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white;</string>
+  </property>
+  <widget class="QTabWidget" name="tabs">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>605</width>
+     <height>802</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="ProfileTab" name="tab_profile">
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <attribute name="title">
+     <string>Профиль</string>
+    </attribute>
+   </widget>
+   <widget class="ManageTasksTab" name="tab_manage_tasks">
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <attribute name="title">
+     <string>Создать задание</string>
+    </attribute>
+   </widget>
+   <widget class="CreateClassTab" name="tab_create_class">
+    <attribute name="title">
+     <string>Создать класс</string>
+    </attribute>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ProfileTab</class>
+   <extends>QWidget</extends>
+   <header>profile.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ManageTasksTab</class>
+   <extends>QWidget</extends>
+   <header>tasks.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CreateClassTab</class>
+   <extends>QWidget</extends>
+   <header>create_class.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

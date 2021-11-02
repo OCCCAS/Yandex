@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>625</width>
+    <height>822</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white;</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>605</width>
+     <height>802</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="ProfileTab" name="tab">
+    <attribute name="title">
+     <string>Профиль</string>
+    </attribute>
+   </widget>
+   <widget class="TasksTab" name="tab_2">
+    <attribute name="title">
+     <string>Задания</string>
+    </attribute>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ProfileTab</class>
+   <extends>QWidget</extends>
+   <header>profile.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TasksTab</class>
+   <extends>QWidget</extends>
+   <header>tasks.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
