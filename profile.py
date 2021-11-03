@@ -6,6 +6,9 @@ from qportfoliofeed import *
 
 from service import *
 
+from PyQt5.Qt import QImage
+from PIL.ImageQt import ImageQt
+
 
 class ProfileTab(QWidget, Ui_Form):
     def __init__(self):
@@ -70,7 +73,12 @@ class ProfileTab(QWidget, Ui_Form):
 
     def set_profile_photo(self) -> None:
         """Set profile avatar photo"""
-        self.lbl_profile_image.setPixmap(QPixmap(get_user_avatar_photo()))
+        image = Image.open(get_user_avatar_photo())
+        image = image.resize((self.lbl_profile_image.maximumWidth(), self.lbl_profile_image.maximumHeight()))
+        image = rounded_image(image)
+        image.convert('RGBA')
+        pixmap = QPixmap().fromImage(QImage(ImageQt(image)))
+        self.lbl_profile_image.setPixmap(pixmap)
 
     def fill_profile(self) -> None:
         """Fill all profile info (photo, name, age and etc.)"""
@@ -81,4 +89,3 @@ class ProfileTab(QWidget, Ui_Form):
         self.lbl_age.setText('Возраст: ' + str(profile_info.get('age')))
         self.lbl_age.adjustSize()
         self.set_profile_photo()
-
