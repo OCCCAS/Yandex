@@ -1,13 +1,14 @@
 {
-  "errors_text": {
+  "texts": {
     "empty_fields": "Не все поля заполнены",
     "login_not_exists": "Такого аккаунта не существует",
     "incorrect_login_data": "Не правильно введен логин или пароль",
     "passwords_not_equal": "Пароли не совпадают",
-    "invalid_password": "Пароль не соответствует тербованиям",
+    "invalid_password": "Пароль не соответствует требованиям",
     "invalid_birthday": "Дата рождения не корректна",
     "invalid_name": "В имени и фамилии не должно быть цифр",
     "invalid_email": "Не корректный почтовый адрес",
-    "user_was_created": "Пользователь с такой почтой уже создан"
+    "user_was_created": "Пользователь с такой почтой уже создан",
+    "default_names_combobox_values": "<Имя>"
   }
 }
