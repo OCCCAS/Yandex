@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(475, 420)
+        Form.resize(475, 471)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -22,14 +22,14 @@ class Ui_Form(object):
         Form.setSizePolicy(sizePolicy)
         Form.setAcceptDrops(False)
         Form.setToolTipDuration(-1)
-        Form.setStyleSheet("background-color: white;")
-        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 431, 331))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        Form.setStyleSheet("background-color: white;\n"
+"padding: 10px;")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout_2.setSpacing(10)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.edit_title = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.edit_title = QtWidgets.QLineEdit(Form)
         self.edit_title.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -37,7 +37,7 @@ class Ui_Form(object):
 "border: 2px solid #eeeeee;")
         self.edit_title.setObjectName("edit_title")
         self.verticalLayout.addWidget(self.edit_title)
-        self.edit_text = QtWidgets.QPlainTextEdit(self.verticalLayoutWidget)
+        self.edit_text = QtWidgets.QPlainTextEdit(Form)
         self.edit_text.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -45,7 +45,7 @@ class Ui_Form(object):
 "border: 2px solid #eeeeee;")
         self.edit_text.setObjectName("edit_text")
         self.verticalLayout.addWidget(self.edit_text)
-        self.dtchoice_date = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        self.dtchoice_date = QtWidgets.QDateEdit(Form)
         self.dtchoice_date.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -53,7 +53,7 @@ class Ui_Form(object):
 "border: 2px solid #eeeeee;")
         self.dtchoice_date.setObjectName("dtchoice_date")
         self.verticalLayout.addWidget(self.dtchoice_date)
-        self.btn_add_material = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_material = QtWidgets.QPushButton(Form)
         self.btn_add_material.setStyleSheet("background-color: #eeeeee;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -62,13 +62,17 @@ class Ui_Form(object):
 "")
         self.btn_add_material.setObjectName("btn_add_material")
         self.verticalLayout.addWidget(self.btn_add_material)
-        self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.label = QtWidgets.QLabel(Form)
         self.label.setStyleSheet("color: red;")
         self.label.setText("")
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
         self.btn_send = QtWidgets.QPushButton(Form)
-        self.btn_send.setGeometry(QtCore.QRect(290, 360, 161, 37))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -80,6 +84,10 @@ class Ui_Form(object):
 "color: white;\n"
 "")
         self.btn_send.setObjectName("btn_send")
+        self.horizontalLayout.addWidget(self.btn_send)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

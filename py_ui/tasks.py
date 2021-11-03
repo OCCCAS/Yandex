@@ -15,9 +15,10 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(598, 374)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.tbl_tasks = QtWidgets.QTableWidget(Form)
         self.tbl_tasks.setEnabled(True)
-        self.tbl_tasks.setGeometry(QtCore.QRect(10, 10, 581, 351))
         self.tbl_tasks.setStyleSheet("")
         self.tbl_tasks.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tbl_tasks.setDragEnabled(False)
@@ -44,6 +45,7 @@ class Ui_Form(object):
         self.tbl_tasks.verticalHeader().setHighlightSections(True)
         self.tbl_tasks.verticalHeader().setSortIndicatorShown(False)
         self.tbl_tasks.verticalHeader().setStretchLastSection(False)
+        self.verticalLayout.addWidget(self.tbl_tasks)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
