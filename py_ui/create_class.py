@@ -39,6 +39,7 @@ class Ui_Form(object):
         self.tbl_class.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.tbl_class.setHorizontalHeaderItem(2, item)
+        self.tbl_class.horizontalHeader().setCascadingSectionResizes(False)
         self.verticalLayout.addWidget(self.tbl_class)
         self.label_2 = QtWidgets.QLabel(Form)
         font = QtGui.QFont()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
+    <width>626</width>
     <height>822</height>
    </rect>
   </property>
@@ -16,43 +16,39 @@
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
   </property>
-  <widget class="QTabWidget" name="tabs">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>605</width>
-     <height>802</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="ProfileTab" name="tab_profile">
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <attribute name="title">
-     <string>Профиль</string>
-    </attribute>
-   </widget>
-   <widget class="ManageTasksTab" name="tab_manage_tasks">
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <attribute name="title">
-     <string>Создать задание</string>
-    </attribute>
-   </widget>
-   <widget class="CreateClassTab" name="tab_create_class">
-    <attribute name="title">
-     <string>Создать класс</string>
-    </attribute>
-   </widget>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabs">
+     <property name="cursor">
+      <cursorShape>ArrowCursor</cursorShape>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="ProfileTab" name="tab_profile">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <attribute name="title">
+       <string>Профиль</string>
+      </attribute>
+     </widget>
+     <widget class="ManageTasksTab" name="tab_manage_tasks">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <attribute name="title">
+       <string>Создать задание</string>
+      </attribute>
+     </widget>
+     <widget class="CreateClassTab" name="tab_create_class">
+      <attribute name="title">
+       <string>Создать класс</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>

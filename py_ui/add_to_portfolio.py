@@ -14,20 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(404, 321)
+        Form.resize(407, 307)
         Form.setStyleSheet("background-color: white;")
-        self.lbl_error = QtWidgets.QLabel(Form)
-        self.lbl_error.setGeometry(QtCore.QRect(10, 170, 67, 17))
-        self.lbl_error.setStyleSheet("color: red;")
-        self.lbl_error.setText("")
-        self.lbl_error.setObjectName("lbl_error")
-        self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 10, 351, 233))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.edit_competitions_name = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.edit_competitions_name = QtWidgets.QLineEdit(Form)
         self.edit_competitions_name.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -37,7 +28,7 @@ class Ui_Form(object):
 "")
         self.edit_competitions_name.setObjectName("edit_competitions_name")
         self.verticalLayout.addWidget(self.edit_competitions_name)
-        self.edit_date = QtWidgets.QDateEdit(self.verticalLayoutWidget)
+        self.edit_date = QtWidgets.QDateEdit(Form)
         self.edit_date.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -47,7 +38,7 @@ class Ui_Form(object):
 "")
         self.edit_date.setObjectName("edit_date")
         self.verticalLayout.addWidget(self.edit_date)
-        self.cmb_place = QtWidgets.QComboBox(self.verticalLayoutWidget)
+        self.cmb_place = QtWidgets.QComboBox(Form)
         self.cmb_place.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -61,7 +52,7 @@ class Ui_Form(object):
         self.cmb_place.addItem("")
         self.cmb_place.addItem("")
         self.verticalLayout.addWidget(self.cmb_place)
-        self.btn_add_photo = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_add_photo = QtWidgets.QPushButton(Form)
         self.btn_add_photo.setStyleSheet("background-color: #eeeeee;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
@@ -70,8 +61,13 @@ class Ui_Form(object):
 "")
         self.btn_add_photo.setObjectName("btn_add_photo")
         self.verticalLayout.addWidget(self.btn_add_photo)
+        self.lbl_error = QtWidgets.QLabel(Form)
+        self.lbl_error.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.lbl_error.setStyleSheet("color: red;")
+        self.lbl_error.setText("")
+        self.lbl_error.setObjectName("lbl_error")
+        self.verticalLayout.addWidget(self.lbl_error)
         self.btn_add_to_portfolio = QtWidgets.QPushButton(Form)
-        self.btn_add_to_portfolio.setGeometry(QtCore.QRect(30, 260, 349, 41))
         self.btn_add_to_portfolio.setStyleSheet("padding: 10px;\n"
 "background-color: #4654f9;\n"
 "border-width: 2px;\n"
@@ -79,6 +75,7 @@ class Ui_Form(object):
 "color: white;\n"
 "")
         self.btn_add_to_portfolio.setObjectName("btn_add_to_portfolio")
+        self.verticalLayout.addWidget(self.btn_add_to_portfolio)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

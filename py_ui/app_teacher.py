@@ -14,10 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(615, 822)
+        Form.resize(626, 822)
         Form.setStyleSheet("background-color: white;")
+        self.verticalLayout = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.tabs = QtWidgets.QTabWidget(Form)
-        self.tabs.setGeometry(QtCore.QRect(10, 10, 605, 802))
         self.tabs.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.tabs.setObjectName("tabs")
         self.tab_profile = ProfileTab()
@@ -31,6 +32,7 @@ class Ui_Form(object):
         self.tab_create_class = CreateClassTab()
         self.tab_create_class.setObjectName("tab_create_class")
         self.tabs.addTab(self.tab_create_class, "")
+        self.verticalLayout.addWidget(self.tabs)
 
         self.retranslateUi(Form)
         self.tabs.setCurrentIndex(0)

@@ -38,6 +38,9 @@
      </item>
      <item>
       <widget class="QTableWidget" name="tbl_class">
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>Имя</string>

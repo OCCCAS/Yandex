@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>398</width>
-    <height>300</height>
+    <width>405</width>
+    <height>286</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,132 +16,116 @@
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
   </property>
-  <widget class="QPushButton" name="btn_save_edits">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>230</y>
-     <width>281</width>
-     <height>37</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">padding: 10px;
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="edit_name">
+       <property name="styleSheet">
+        <string notr="true">background-color: #ffffff;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+
+</string>
+       </property>
+       <property name="placeholderText">
+        <string>Имя</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="edit_surname">
+       <property name="styleSheet">
+        <string notr="true">background-color: #ffffff;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+
+</string>
+       </property>
+       <property name="placeholderText">
+        <string>Фамилия</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QComboBox" name="cmb_gender">
+     <property name="styleSheet">
+      <string notr="true">background-color: #ffffff;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+
+</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>Мальчик</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Девочка</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateEdit" name="dtchoice_birthday">
+     <property name="styleSheet">
+      <string notr="true">background-color: #ffffff;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+
+</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btn_add_photo">
+     <property name="styleSheet">
+      <string notr="true">background-color: #eeeeee;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+</string>
+     </property>
+     <property name="text">
+      <string>Добавить фотографию</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btn_save_edits">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding: 10px;
 background-color: #4654f9;
 border-width: 2px;
 border-radius: 5px;
 color: white;
 </string>
-   </property>
-   <property name="text">
-    <string>Сохранить изменения</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>10</y>
-     <width>281</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLineEdit" name="edit_name">
-        <property name="styleSheet">
-         <string notr="true">background-color: #ffffff;
-border-radius: 5px;
-color: black;
-padding: 10px;
-border: 2px solid #eeeeee;
-
-</string>
-        </property>
-        <property name="placeholderText">
-         <string>Имя</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="edit_surname">
-        <property name="styleSheet">
-         <string notr="true">background-color: #ffffff;
-border-radius: 5px;
-color: black;
-padding: 10px;
-border: 2px solid #eeeeee;
-
-</string>
-        </property>
-        <property name="placeholderText">
-         <string>Фамилия</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QComboBox" name="cmb_gender">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
-border-radius: 5px;
-color: black;
-padding: 10px;
-border: 2px solid #eeeeee;
-
-</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Мальчик</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Девочка</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item>
-     <widget class="QDateEdit" name="dtchoice_birthday">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
-border-radius: 5px;
-color: black;
-padding: 10px;
-border: 2px solid #eeeeee;
-
-</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btn_add_photo">
-      <property name="styleSheet">
-       <string notr="true">background-color: #eeeeee;
-border-radius: 5px;
-color: black;
-padding: 10px;
-border: 2px solid #eeeeee;
-</string>
-      </property>
-      <property name="text">
-       <string>Добавить фотографию</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+     </property>
+     <property name="text">
+      <string>Сохранить изменения</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

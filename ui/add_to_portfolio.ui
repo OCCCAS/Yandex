@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>404</width>
-    <height>321</height>
+    <width>407</width>
+    <height>307</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,132 +16,116 @@
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
   </property>
-  <widget class="QLabel" name="lbl_error">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>170</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: red;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>10</y>
-     <width>351</width>
-     <height>233</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLineEdit" name="edit_competitions_name">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLineEdit" name="edit_competitions_name">
+     <property name="styleSheet">
+      <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-      <property name="placeholderText">
-       <string>Название соревнований</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QDateEdit" name="edit_date">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+     </property>
+     <property name="placeholderText">
+      <string>Название соревнований</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateEdit" name="edit_date">
+     <property name="styleSheet">
+      <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QComboBox" name="cmb_place">
-      <property name="styleSheet">
-       <string notr="true">background-color: #ffffff;
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="cmb_place">
+     <property name="styleSheet">
+      <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-      </property>
-      <item>
-       <property name="text">
-        <string>1 (Победитель)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2 (Призер)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3 (Призер)</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Участник</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btn_add_photo">
-      <property name="styleSheet">
-       <string notr="true">background-color: #eeeeee;
-border-radius: 5px;
-color: black;
-padding: 10px;
-border: 2px solid #eeeeee;
-</string>
-      </property>
+     </property>
+     <item>
       <property name="text">
-       <string>Добавить фотографию</string>
+       <string>1 (Победитель)</string>
       </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QPushButton" name="btn_add_to_portfolio">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>260</y>
-     <width>349</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">padding: 10px;
+     </item>
+     <item>
+      <property name="text">
+       <string>2 (Призер)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3 (Призер)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Участник</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btn_add_photo">
+     <property name="styleSheet">
+      <string notr="true">background-color: #eeeeee;
+border-radius: 5px;
+color: black;
+padding: 10px;
+border: 2px solid #eeeeee;
+</string>
+     </property>
+     <property name="text">
+      <string>Добавить фотографию</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lbl_error">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: red;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btn_add_to_portfolio">
+     <property name="styleSheet">
+      <string notr="true">padding: 10px;
 background-color: #4654f9;
 border-width: 2px;
 border-radius: 5px;
 color: white;
 </string>
-   </property>
-   <property name="text">
-    <string>Добавить в портфолио</string>
-   </property>
-  </widget>
+     </property>
+     <property name="text">
+      <string>Добавить в портфолио</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
