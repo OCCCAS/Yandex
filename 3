@@ -175,6 +175,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
             data = self.__get_account_data()
             self.__show_error('')
 
+            print(data)
             account_is_created = create_account(data)
 
             # If user was created
