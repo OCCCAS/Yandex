@@ -44,7 +44,7 @@ class EditProfile(QDialog, Ui_Dialog):
             'surname': self.edit_surname.text(),
             'gender': self.cmb_gender.currentText()[0],
             'birthday': self.get_birthday_timestamp(),
-            'photo': self.profile_photo if self.profile_photo else DEFAULT_AVATAR_PATH
+            'photo': self.profile_photo if self.profile_photo else None
         }
 
         return data

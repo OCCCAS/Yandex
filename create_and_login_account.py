@@ -48,16 +48,16 @@ class LoginAccountApp(QDialog, py_ui.login_account.Ui_Form):
     def __login(self):
         try:
             if self.__is_fields_empty():
-                raise FormFillingError(get_filing_error_text('empty_fields'))
+                raise FormFillingError(get_static_interface_texts('empty_fields'))
 
             data = self.__get_login_data()
             is_login_exists = check_login_exists(data)
             is_login_data_correct = check_login_data_correctness(data)
 
             if not is_login_exists:
-                raise FormFillingError(get_filing_error_text('login_not_exists'))
+                raise FormFillingError(get_static_interface_texts('login_not_exists'))
             if not is_login_data_correct:
-                raise FormFillingError(get_filing_error_text('incorrect_login_data'))
+                raise FormFillingError(get_static_interface_texts('incorrect_login_data'))
             else:
                 save_current_user_to_local(data)
                 self.close()
@@ -86,17 +86,17 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         password_again = self.edit_password_again.text()
 
         if not password == password_again:
-            raise FormFillingError(get_filing_error_text('passwords_not_equal'))
+            raise FormFillingError(get_static_interface_texts('passwords_not_equal'))
 
         if not PasswordValidator(password).validate():
-            raise FormFillingError(get_filing_error_text('invalid_password'))
+            raise FormFillingError(get_static_interface_texts('invalid_password'))
 
         return hash_data(password)
 
     def __get_birthday(self):
         date = self.dtchoice_birthday.dateTime().toPyDateTime().timestamp()
         if not DateValidator(date).validate():
-            raise FormFillingError(get_filing_error_text('invalid_birthday'))
+            raise FormFillingError(get_static_interface_texts('invalid_birthday'))
 
         return int(date)
 
@@ -106,7 +106,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         for letter in name:
             # If digits in name
             if letter.isdigit():
-                raise FormFillingError(get_filing_error_text('invalid_name'))
+                raise FormFillingError(get_static_interface_texts('invalid_name'))
 
         return name
 
@@ -116,7 +116,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         for letter in surname:
             # If digits in surname
             if letter.isdigit():
-                raise FormFillingError(get_filing_error_text('invalid_name'))
+                raise FormFillingError(get_static_interface_texts('invalid_name'))
 
         return surname
 
@@ -124,7 +124,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         email = self.edit_email.text()
 
         if not EmailValidator(email).validate():
-            raise FormFillingError(get_filing_error_text('invalid_email'))
+            raise FormFillingError(get_static_interface_texts('invalid_email'))
 
         return email
 
@@ -169,7 +169,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
         try:
             # Check empty fields
             if self.__is_fields_empty():
-                raise FormFillingError(get_filing_error_text('empty_fields'))
+                raise FormFillingError(get_static_interface_texts('empty_fields'))
 
             data = self.__get_account_data()
             self.__show_error('')
@@ -178,7 +178,7 @@ class CreateAccountApp(QDialog, py_ui.create_account.Ui_Form):
 
             # If user was created
             if not account_is_created:
-                raise FormFillingError(get_filing_error_text('user_was_created'))
+                raise FormFillingError(get_static_interface_texts('user_was_created'))
 
             self.close()
         except FormFillingError as e:
