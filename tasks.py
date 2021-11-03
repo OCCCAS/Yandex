@@ -1,6 +1,6 @@
 import datetime
 
-from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QFileDialog, QMessageBox, QHeaderView
 
 from service import *
 import py_ui.manage_tasks
@@ -62,6 +62,7 @@ class TasksTab(QWidget, py_ui.tasks.Ui_Form):
         self.setupUi(self)
 
         self.fill_table()
+        self.setup_table()
 
     def fill_table(self):
         tasks = self.get_tasks()
@@ -71,6 +72,16 @@ class TasksTab(QWidget, py_ui.tasks.Ui_Form):
             self.tbl_tasks.setRowCount(self.tbl_tasks.rowCount() + 1)
             for j, el in enumerate(row):
                 self.tbl_tasks.setItem(i, j, QTableWidgetItem(str(el)))
+
+        self.tbl_tasks.resizeRowsToContents()
+    
+    def setup_table(self):
+        table_header = self.tbl_tasks.horizontalHeader()
+
+        table_header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        table_header.setSectionResizeMode(1, QHeaderView.Stretch)
+        table_header.setSectionResizeMode(2, QHeaderView.Stretch)
+        table_header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
 
     @staticmethod
     def get_tasks() -> List[List]:
