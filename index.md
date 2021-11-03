@@ -1,37 +1,46 @@
-## Welcome to GitHub Pages
+<h1 align="center">PortSave</h1>
 
-You can use the [editor on GitHub](https://github.com/OCCCAS/Yandex/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Содержание
+0. [О проекте](#about-project)
+1. [Установка](#install)
+    1. [Linux](#install-linux)
+    2. [Windows](#install-windows)
+3. [Функции](#funstions)
+4. [Цель](#purpose)
+5. [ТЗ](https://github.com/OCCCAS/Yandex/blob/master/resources/TS.md)
+6. [Пояснительная записка](https://github.com/OCCCAS/Yandex/blob/master/resources/ExplanatoryNote.md)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## <span id="about-project">О проекте</span>
+<p>Это приложение для детей, родителей и воспитателей.<br>
+Оно предсталяет собой клиент приложение для <b>детей</b> и приложение для <b>воспитателей</b> в котором он может писать задание на дом и проверять его. 
+Также детям можно выполнять мотивационные задания и получать баллые в рейтинг.</p>
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+---
+## <span id="install">Установка</span>
+* ***<span id="install-linux">Linux</span>***
+``` shell
+git clone https://github.com/OCCCAS/Yandex.git Yandex
+cd Yandex
+python3 -m venv venv
+. venv/bin/activate
+pip install -r requirements.txt
+python3 main.py
 ```
+* ***<span id="install-windows">Windows</span>***
+``` shell
+git clone https://github.com/OCCCAS/Yandex.git Yandex
+cd Yandex
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python main.py
+```
+___
+## <span id="funstions">Функции</span>
+* ***Получение и отправка домашнего задания***
+* ***Выполнение поставленных задач***
+* ***Создание портфолио ребенка***
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/OCCCAS/Yandex/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+---
+## <span id="purpose">Цель проекта</span>
+* Многие дети теряют свои грамоты, дипломы и сертификаты, которые могли бы им помочь при поступлении в новую школу, коледж, вуз и т.п, но мое приложение даст им возможноть сохранить свои достижения в интернете.
