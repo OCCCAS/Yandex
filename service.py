@@ -194,13 +194,16 @@ def get_static_interface_texts(name: str) -> str:
 
 def create_task(title: str, text: str, date: int, photo: Union[str, None]) -> bool:
     """Load task to database"""
-    database_handler_.create_task(title, text, date, photo)
+    user_email = get_local_user_email()
+    class_ = database_handler_.get_class_id_by_director_email(user_email)
+    database_handler_.create_task(title, text, date, photo, class_)
     return True
 
 
 def get_tasks() -> List[Tuple]:
     """Get tasks"""
-    return database_handler_.get_tasks()
+    user_email = get_local_user_email()
+    return database_handler_.get_tasks(user_email)
 
 
 def get_user_post_id() -> str:

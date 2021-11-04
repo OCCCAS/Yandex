@@ -68,13 +68,21 @@ class DatabaseHandler:
         data = self.cursor.execute('SELECT password FROM users WHERE email=?', (login_data.get('email'),)).fetchone()
         return True if data and data == login_data.get('password') else False
 
-    def create_task(self, title: str, text: str, date: int, photo: Union[str, None]) -> None:
-        self.cursor.execute('INSERT INTO tasks (title, text, date, photo) VALUES(?, ?, ?, ?)',
-                            (title, text, date, photo))
+    def create_task(self, title: str, text: str, date: int, photo: Union[str, None], class_: int) -> None:
+        self.cursor.execute('INSERT INTO tasks (title, text, date, photo, class) VALUES(?, ?, ?, ?, ?)',
+                            (title, text, date, photo, class_))
         self.conn.commit()
 
-    def get_tasks(self) -> List[Tuple]:
-        return self.cursor.execute('SELECT * FROM tasks').fetchall()
+    def get_class_id_by_director_email(self, director_email):
+        id_ = self.cursor.execute('SELECT id FROM classes WHERE director=(SELECT id FROM users WHERE email=?)',
+                            (director_email, )).fetchone()[0]
+        return id_
+
+    def get_tasks(self, user_email) -> List[Tuple]:
+        return self.cursor.execute(
+            """SELECT * FROM tasks WHERE class=(
+                    SELECT class FROM users WHERE email=?
+            )""", (user_email,)).fetchall()
 
     def get_post_id(self, post_name: str) -> int:
         data = self.cursor.execute('SELECT id FROM posts WHERE name=?', (post_name,)).fetchone()
@@ -91,7 +99,7 @@ class DatabaseHandler:
         self.conn.commit()
         class_id = self.cursor.execute('SELECT id FROM classes WHERE '
                                        'director=(SELECT id FROM users WHERE email=?)',
-                                       (director_email, )).fetchone()[0]
+                                       (director_email,)).fetchone()[0]
 
         for email in children_emails:
             self.cursor.execute('UPDATE users SET class=? WHERE email=?', (class_id, email))
