@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>585</height>
+    <width>581</width>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,6 +38,9 @@
      </item>
      <item>
       <widget class="QTableWidget" name="tbl_class">
+       <property name="textElideMode">
+        <enum>Qt::ElideMiddle</enum>
+       </property>
        <attribute name="horizontalHeaderCascadingSectionResizes">
         <bool>false</bool>
        </attribute>
@@ -76,8 +79,8 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
         <widget class="QComboBox" name="cmb_name">
          <property name="styleSheet">
           <string notr="true">background-color: #ffffff;
@@ -95,8 +98,8 @@ border: 2px solid #eeeeee;
          </item>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="btn_add">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="btn_add_people">
          <property name="font">
           <font>
            <weight>50</weight>
@@ -112,42 +115,12 @@ border: 2px solid #eeeeee;
 </string>
          </property>
          <property name="text">
-          <string>Добавить</string>
+          <string>Добавить ученика</string>
          </property>
         </widget>
        </item>
-      </layout>
-     </item>
-     <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_create_class">
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btn_del_people">
          <property name="font">
           <font>
            <weight>75</weight>
@@ -155,19 +128,75 @@ border: 2px solid #eeeeee;
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding: 10px;
+          <string notr="true">background-color: #fa4658;
+border-radius: 5px;
+color: white;
+padding: 10px;
+border: 2px solid #fa4658;
+</string>
+         </property>
+         <property name="text">
+          <string>Удалить ученика</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Выберите ученика в таблице</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_create_class">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">padding: 10px;
 background-color: #4654f9;
 border-width: 2px;
 border-radius: 5px;
 color: white;
 </string>
-         </property>
-         <property name="text">
-          <string>Создать класс</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+       </property>
+       <property name="text">
+        <string>Создать класс</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_del_class">
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #fa4658;
+border-radius: 5px;
+color: white;
+padding: 10px;
+border: 2px solid #fa4658;
+</string>
+       </property>
+       <property name="text">
+        <string>Удалить класс</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

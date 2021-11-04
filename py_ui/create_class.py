@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(570, 585)
+        Form.resize(581, 590)
         Form.setStyleSheet("background-color: white;")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -30,6 +30,7 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.tbl_class = QtWidgets.QTableWidget(Form)
+        self.tbl_class.setTextElideMode(QtCore.Qt.ElideMiddle)
         self.tbl_class.setObjectName("tbl_class")
         self.tbl_class.setColumnCount(3)
         self.tbl_class.setRowCount(0)
@@ -50,8 +51,8 @@ class Ui_Form(object):
         self.label_2.setStyleSheet("color: #333c56;")
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.formLayout = QtWidgets.QFormLayout()
+        self.formLayout.setObjectName("formLayout")
         self.cmb_name = QtWidgets.QComboBox(Form)
         self.cmb_name.setStyleSheet("background-color: #ffffff;\n"
 "border-radius: 5px;\n"
@@ -62,27 +63,43 @@ class Ui_Form(object):
 "")
         self.cmb_name.setObjectName("cmb_name")
         self.cmb_name.addItem("")
-        self.horizontalLayout.addWidget(self.cmb_name)
-        self.btn_add = QtWidgets.QPushButton(Form)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.cmb_name)
+        self.btn_add_people = QtWidgets.QPushButton(Form)
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
-        self.btn_add.setFont(font)
-        self.btn_add.setStyleSheet("background-color: #eeeeee;\n"
+        self.btn_add_people.setFont(font)
+        self.btn_add_people.setStyleSheet("background-color: #eeeeee;\n"
 "border-radius: 5px;\n"
 "color: black;\n"
 "padding: 10px;\n"
 "border: 2px solid #eeeeee;\n"
 "")
-        self.btn_add.setObjectName("btn_add")
-        self.horizontalLayout.addWidget(self.btn_add)
-        self.verticalLayout.addLayout(self.horizontalLayout)
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem)
+        self.btn_add_people.setObjectName("btn_add_people")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.btn_add_people)
+        self.btn_del_people = QtWidgets.QPushButton(Form)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_del_people.setFont(font)
+        self.btn_del_people.setStyleSheet("background-color: #fa4658;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"padding: 10px;\n"
+"border: 2px solid #fa4658;\n"
+"")
+        self.btn_del_people.setObjectName("btn_del_people")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.btn_del_people)
+        self.label_3 = QtWidgets.QLabel(Form)
+        self.label_3.setObjectName("label_3")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
+        self.verticalLayout.addLayout(self.formLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem1)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.btn_create_class = QtWidgets.QPushButton(Form)
         font = QtGui.QFont()
         font.setBold(True)
@@ -95,11 +112,23 @@ class Ui_Form(object):
 "color: white;\n"
 "")
         self.btn_create_class.setObjectName("btn_create_class")
-        self.horizontalLayout_2.addWidget(self.btn_create_class)
-        self.verticalLayout.addLayout(self.horizontalLayout_2)
-        self.verticalLayout_2.addLayout(self.verticalLayout)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem2)
+        self.horizontalLayout.addWidget(self.btn_create_class)
+        self.btn_del_class = QtWidgets.QPushButton(Form)
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_del_class.setFont(font)
+        self.btn_del_class.setStyleSheet("background-color: #fa4658;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"padding: 10px;\n"
+"border: 2px solid #fa4658;\n"
+"")
+        self.btn_del_class.setObjectName("btn_del_class")
+        self.horizontalLayout.addWidget(self.btn_del_class)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -116,5 +145,8 @@ class Ui_Form(object):
         item.setText(_translate("Form", "День рождения"))
         self.label_2.setText(_translate("Form", "Добавить ребенка:"))
         self.cmb_name.setItemText(0, _translate("Form", "<Имя>"))
-        self.btn_add.setText(_translate("Form", "Добавить"))
+        self.btn_add_people.setText(_translate("Form", "Добавить ученика"))
+        self.btn_del_people.setText(_translate("Form", "Удалить ученика"))
+        self.label_3.setText(_translate("Form", "Выберите ученика в таблице"))
         self.btn_create_class.setText(_translate("Form", "Создать класс"))
+        self.btn_del_class.setText(_translate("Form", "Удалить класс"))

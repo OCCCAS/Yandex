@@ -12,11 +12,23 @@ class CreateClassTab(QWidget, Ui_Form):
 
         self.setupUi(self)
         self.fill_names_combobox()
+        self.fill_table()
         self.setup_table()
 
-        self.btn_add.clicked.connect(self.add_children_to_class_table_and_refill_names_combobox)
+        self.btn_add_people.clicked.connect(self.add_children_to_class_table_and_refill_names_combobox)
         self.btn_create_class.clicked.connect(self.create_class)
 
+    def fill_table(self):
+        class_ = get_class()
+        for index, children in enumerate(class_):
+            first_name, last_name, email, birthday_timestamp = children[1:5]
+            name = f'{first_name} {last_name}'
+            birthday = datetime.datetime.fromtimestamp(birthday_timestamp).strftime('%d.%m.%Y')
+
+            self.tbl_class.setRowCount(self.tbl_class.rowCount() + 1)
+            for j, el in enumerate((name, email, birthday)):
+                self.tbl_class.setItem(index, j, QTableWidgetItem(str(el)))
+    
     def setup_table(self):
         table_header = self.tbl_class.horizontalHeader()
 

@@ -228,3 +228,9 @@ def create_class(children_email: List[str]) -> bool:
     user_email = get_local_user_email()
     database_handler_.create_class(user_email, children_email)
     return True
+
+def get_class() -> list:
+    """This method user for get children list from class by director email"""
+    user_email = get_local_user_email()
+    return database_handler_.get_class_by_director_email(user_email)
+

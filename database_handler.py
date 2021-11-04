@@ -75,7 +75,7 @@ class DatabaseHandler:
 
     def get_class_id_by_director_email(self, director_email):
         id_ = self.cursor.execute('SELECT id FROM classes WHERE director=(SELECT id FROM users WHERE email=?)',
-                            (director_email, )).fetchone()[0]
+                                  (director_email,)).fetchone()[0]
         return id_
 
     def get_tasks(self, user_email) -> List[Tuple]:
@@ -105,6 +105,13 @@ class DatabaseHandler:
             self.cursor.execute('UPDATE users SET class=? WHERE email=?', (class_id, email))
 
         self.conn.commit()
+
+    def get_class_by_director_email(self, director_email: str):
+        return self.cursor.execute("""SELECT * FROM users WHERE class=(
+            SELECT id FROM classes WHERE director=(
+                SELECT id FROM users WHERE email=?
+            )
+        )""", (director_email,)).fetchall()
 
     def __del__(self):
         self.conn.close()
