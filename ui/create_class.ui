@@ -78,127 +78,71 @@
        </property>
       </widget>
      </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QComboBox" name="cmb_name">
-         <property name="styleSheet">
-          <string notr="true">background-color: #ffffff;
+      <widget class="QComboBox" name="cmb_name">
+       <property name="styleSheet">
+        <string notr="true">background-color: #ffffff;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 
 </string>
-         </property>
-         <item>
-          <property name="text">
-           <string>&lt;Имя&gt;</string>
-          </property>
-         </item>
-        </widget>
+       </property>
+       <item>
+        <property name="text">
+         <string>&lt;Имя&gt;</string>
+        </property>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="btn_add_people">
-         <property name="font">
-          <font>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: #eeeeee;
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_add_people">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #eeeeee;
 border-radius: 5px;
 color: black;
 padding: 10px;
 border: 2px solid #eeeeee;
 </string>
-         </property>
-         <property name="text">
-          <string>Добавить ученика</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="btn_del_people">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: #fa4658;
-border-radius: 5px;
-color: white;
-padding: 10px;
-border: 2px solid #fa4658;
-</string>
-         </property>
-         <property name="text">
-          <string>Удалить ученика</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Выберите ученика в таблице</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+       </property>
+       <property name="text">
+        <string>Добавить ученика</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="btn_create_class">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">padding: 10px;
+    <widget class="QPushButton" name="btn_create_class">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding: 10px;
 background-color: #4654f9;
 border-width: 2px;
 border-radius: 5px;
 color: white;
 </string>
-       </property>
-       <property name="text">
-        <string>Создать класс</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btn_del_class">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: #fa4658;
-border-radius: 5px;
-color: white;
-padding: 10px;
-border: 2px solid #fa4658;
-</string>
-       </property>
-       <property name="text">
-        <string>Удалить класс</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+     </property>
+     <property name="text">
+      <string>Создать класс</string>
+     </property>
+    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer_2">
