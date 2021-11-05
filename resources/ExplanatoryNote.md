@@ -9,6 +9,9 @@
 - [x] Получение задач 
 - [x] Создание групп
 
+## Структура базы данных
+![DatabaseStruct](https://user-images.githubusercontent.com/72919856/140518328-399c98b9-6c78-480d-92cb-07355150ad75.png)
+
 ## Библиотеки
 ___NOTE: Все используемые библиотеки находятся в файле [requirements.txt](https://github.com/OCCCAS/Yandex/blob/master/requirements.txt)___
 * [PyQt5](https://pypi.org/project/PyQt5/) <br>
