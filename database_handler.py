@@ -34,6 +34,10 @@ class DatabaseHandler:
         data = [self.get_user_data_by_column(column, email) for column in columns]
         return data
 
+    def delete_profile(self, user_email: str) -> None:
+        self.cursor.execute('DELETE FROM users WHERE email=?', (user_email, ))
+        self.conn.commit()
+
     def edit_user_data_by_column(self, column: str, new_data: Union[str, int, float, bool], email: str) -> None:
         self.cursor.execute(f'UPDATE users SET {column}=? WHERE email=?', (new_data, email))
         self.conn.commit()
@@ -65,7 +69,8 @@ class DatabaseHandler:
         return data if data else tuple()
 
     def check_login_data_correctness(self, login_data: dict) -> bool:
-        data = self.cursor.execute('SELECT password FROM users WHERE email=?', (login_data.get('email'),)).fetchone()
+        data = self.cursor.execute('SELECT password FROM users WHERE email=?', 
+                (login_data.get('email'),)).fetchone()[0]
         return True if data and data == login_data.get('password') else False
 
     def create_task(self, title: str, text: str, date: int, photo: Union[str, None], class_: int) -> None:

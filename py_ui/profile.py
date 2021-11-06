@@ -68,6 +68,17 @@ class Ui_Form(object):
         self.horizontalLayout_3.addWidget(self.btn_edit_profile)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem1)
+        self.btn_delete_profile = QtWidgets.QPushButton(Form)
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.btn_delete_profile.setFont(font)
+        self.btn_delete_profile.setStyleSheet("background-color: #fa4658;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"padding: 5px;")
+        self.btn_delete_profile.setObjectName("btn_delete_profile")
+        self.horizontalLayout_3.addWidget(self.btn_delete_profile)
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -101,5 +112,6 @@ class Ui_Form(object):
         self.lbl_name.setText(_translate("Form", "TImur Pavlov"))
         self.lbl_age.setText(_translate("Form", "15 age"))
         self.btn_edit_profile.setText(_translate("Form", "Редактировать профиль"))
+        self.btn_delete_profile.setText(_translate("Form", "Удалить профиль"))
         self.btn_add_img_to_portfolio.setText(_translate("Form", "Добавить фото в портфолио"))
 from qportfoliofeed import QPortfolioFeed

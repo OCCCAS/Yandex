@@ -1,5 +1,6 @@
 from add_to_portfolio import AddToPortfolio
 from edit_profile import EditProfile
+from create_and_login_account import CreateAccountApp
 from py_ui.profile import Ui_Form
 
 from qportfoliofeed import *
@@ -7,6 +8,7 @@ from qportfoliofeed import *
 from service import *
 
 from PyQt5.Qt import QImage
+from PyQt5.QtWidgets import QMessageBox
 from PIL.ImageQt import ImageQt
 
 
@@ -20,6 +22,20 @@ class ProfileTab(QWidget, Ui_Form):
 
         self.btn_add_img_to_portfolio.clicked.connect(self.add_to_portfolio)
         self.btn_edit_profile.clicked.connect(self.edit_profile)
+        self.btn_delete_profile.clicked.connect(self.delete_profile)
+
+    def delete_profile(self) -> None:
+        """Delete profile"""
+        delete = QMessageBox.question(self, 'Удалить?', 'Вы точно хотите удалить свой аккаунт?')
+        if delete == QMessageBox.Yes:
+            delete_profile()
+            exit_from_local()
+
+            # ProfileTab (self) > QStackWidget (self.parent()) > QTabWidget (self.parent().parent()) > QMainWindow (self.parent().parent().parent())
+            main_window = self.parent().parent().parent()
+            create_account_app = CreateAccountApp()
+            main_window.close()
+            create_account_app.exec_()
 
     def edit_profile(self) -> None:
         """Open edit profile dialog and repaint profile info"""

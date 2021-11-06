@@ -141,6 +141,12 @@ def edit_profile(name: str, surname: str, gender: str, birthday: int, photo: str
                                                 [name, surname, birthday, gender, photo],
                                                 user_email)
 
+def delete_profile():
+    """Delete user"""
+    user_email =  get_local_user_email()
+    database_handler_.delete_profile(user_email)
+
+
 
 def increase_photos_count() -> None:
     """Increase portfolio photo count (in database)"""
@@ -234,3 +240,9 @@ def get_class() -> list:
     """This method user for get children list from class by director email"""
     user_email = get_local_user_email()
     return database_handler_.get_class_by_director_email(user_email)
+
+def exit_from_local():
+    with open('user.json', 'w') as json_file:
+        json.dump({}, json_file)
+        json_file.close()
+
