@@ -92,18 +92,24 @@ class DatabaseHandler:
         # 2 - children post id
         return self.cursor.execute('SELECT * FROM users WHERE post=2').fetchall()
 
+    def __is_class_created(self, director_email: str):
+        data = self.cursor.execute(
+                'SELECT * FROM classes WHERE director=(SELECT id FROM users WHERE email=?)', 
+                (director_email, )).fetchone()
+        return True if data else False
+
     def create_class(self, director_email: str, children_emails: List[str]) -> None:
-        self.cursor.execute('INSERT or REPLACE INTO classes(director) '
-                            'VALUES((SELECT id FROM users WHERE email=?))',
-                            (director_email,))
-        self.conn.commit()
+        if not self.__is_class_created(director_email):
+            self.cursor.execute("""INSERT or REPLACE INTO classes(director) 
+                                VALUES((SELECT id FROM users WHERE email=?))""",
+                                (director_email,))
+            self.conn.commit()
+
         class_id = self.cursor.execute('SELECT id FROM classes WHERE '
                                        'director=(SELECT id FROM users WHERE email=?)',
                                        (director_email,)).fetchone()[0]
-
         for email in children_emails:
             self.cursor.execute('UPDATE users SET class=? WHERE email=?', (class_id, email))
-
         self.conn.commit()
 
     def get_class_by_director_email(self, director_email: str):
