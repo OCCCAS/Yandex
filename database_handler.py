@@ -6,7 +6,7 @@ class DatabaseHandler:
     def __init__(self, database_filename):
         self.conn = sqlite3.connect(database_filename, check_same_thread=False)
         self.cursor = self.conn.cursor()
-
+    
     def __get_columns_name(self) -> list:
         return list(map(lambda item: item[1], self.cursor.execute('PRAGMA table_info(users)').fetchall()))
 
