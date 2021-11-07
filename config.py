@@ -5,7 +5,7 @@ import sys
 # if application is a script or frozen exe
 if getattr(sys, 'frozen', False):
     BASE_DIR = os.path.dirname(sys.executable)
-elif __file__:
+else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
 DATABASE_PATH = os.path.join(BASE_DIR, 'database.db')
