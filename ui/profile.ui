@@ -132,6 +132,25 @@ padding: 5px;</string>
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="btn_exit">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #4654f9;
+border-width: 2px;
+border-radius: 5px;
+color: white;
+padding: 5px 15px;</string>
+       </property>
+       <property name="text">
+        <string>Выйти</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="btn_delete_profile">
        <property name="font">
         <font>
@@ -181,6 +200,21 @@ color: white;
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_edit_portfolio">
+       <property name="styleSheet">
+        <string notr="true">padding: 10px;
+background-color: #4654f9;
+border-width: 2px;
+border-radius: 5px;
+color: white;
+</string>
+       </property>
+       <property name="text">
+        <string>Редактировать портфолио</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

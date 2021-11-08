@@ -1,5 +1,6 @@
 from add_to_portfolio import AddToPortfolio
 from edit_profile import EditProfile
+from edit_portfolio import EditPortfolio
 from create_and_login_account import CreateAccountApp
 from py_ui.profile import Ui_Form
 
@@ -23,6 +24,27 @@ class ProfileTab(QWidget, Ui_Form):
         self.btn_add_img_to_portfolio.clicked.connect(self.add_to_portfolio)
         self.btn_edit_profile.clicked.connect(self.edit_profile)
         self.btn_delete_profile.clicked.connect(self.delete_profile)
+        self.btn_exit.clicked.connect(self.exit_from_profile)
+        self.btn_edit_portfolio.clicked.connect(self.edit_portfolio)
+
+    def edit_portfolio(self):
+        edit_portfolio_dialog = EditPortfolio()
+        edit_portfolio_dialog.exec_()
+        self.fill_portfolio()
+
+    def close_main_window_and_start_login(self):
+        # ProfileTab (self) > QStackWidget (self.parent()) > QTabWidget (self.parent().parent()) > QMainWindow (self.parent().parent().parent())
+        main_window = self.parent().parent().parent()
+        create_account_app = CreateAccountApp()
+        main_window.close()
+        create_account_app.exec_()
+
+    def exit_from_profile(self):
+        """Exit from current profile"""
+        ans = QMessageBox.question(self, 'Уверены?', 'Вы точно хотите выйти из своего профиля?')
+        if ans == QMessageBox.Yes:
+            exit_from_local()
+            self.close_main_window_and_start_login()
 
     def delete_profile(self) -> None:
         """Delete profile"""
@@ -30,12 +52,7 @@ class ProfileTab(QWidget, Ui_Form):
         if delete == QMessageBox.Yes:
             delete_profile()
             exit_from_local()
-
-            # ProfileTab (self) > QStackWidget (self.parent()) > QTabWidget (self.parent().parent()) > QMainWindow (self.parent().parent().parent())
-            main_window = self.parent().parent().parent()
-            create_account_app = CreateAccountApp()
-            main_window.close()
-            create_account_app.exec_()
+            self.close_main_window_and_start_login()
 
     def edit_profile(self) -> None:
         """Open edit profile dialog and repaint profile info"""

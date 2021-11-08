@@ -68,6 +68,17 @@ class Ui_Form(object):
         self.horizontalLayout_3.addWidget(self.btn_edit_profile)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem1)
+        self.btn_exit = QtWidgets.QPushButton(Form)
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.btn_exit.setFont(font)
+        self.btn_exit.setStyleSheet("background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"padding: 5px 15px;")
+        self.btn_exit.setObjectName("btn_exit")
+        self.horizontalLayout_3.addWidget(self.btn_exit)
         self.btn_delete_profile = QtWidgets.QPushButton(Form)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -93,6 +104,15 @@ class Ui_Form(object):
         self.horizontalLayout_2.addWidget(self.btn_add_img_to_portfolio)
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem2)
+        self.btn_edit_portfolio = QtWidgets.QPushButton(Form)
+        self.btn_edit_portfolio.setStyleSheet("padding: 10px;\n"
+"background-color: #4654f9;\n"
+"border-width: 2px;\n"
+"border-radius: 5px;\n"
+"color: white;\n"
+"")
+        self.btn_edit_portfolio.setObjectName("btn_edit_portfolio")
+        self.horizontalLayout_2.addWidget(self.btn_edit_portfolio)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
         self.feed_portfolio = QPortfolioFeed(Form)
         self.feed_portfolio.setWidgetResizable(True)
@@ -112,6 +132,8 @@ class Ui_Form(object):
         self.lbl_name.setText(_translate("Form", "TImur Pavlov"))
         self.lbl_age.setText(_translate("Form", "15 age"))
         self.btn_edit_profile.setText(_translate("Form", "Редактировать профиль"))
+        self.btn_exit.setText(_translate("Form", "Выйти"))
         self.btn_delete_profile.setText(_translate("Form", "Удалить профиль"))
         self.btn_add_img_to_portfolio.setText(_translate("Form", "Добавить фото в портфолио"))
+        self.btn_edit_portfolio.setText(_translate("Form", "Редактировать портфолио"))
 from qportfoliofeed import QPortfolioFeed

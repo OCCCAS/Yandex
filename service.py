@@ -141,11 +141,11 @@ def edit_profile(name: str, surname: str, gender: str, birthday: int, photo: str
                                                 [name, surname, birthday, gender, photo],
                                                 user_email)
 
+
 def delete_profile():
     """Delete user"""
-    user_email =  get_local_user_email()
+    user_email = get_local_user_email()
     database_handler_.delete_profile(user_email)
-
 
 
 def increase_photos_count() -> None:
@@ -241,8 +241,16 @@ def get_class() -> list:
     user_email = get_local_user_email()
     return database_handler_.get_class_by_director_email(user_email)
 
+
 def exit_from_local():
     with open('user.json', 'w') as json_file:
         json.dump({}, json_file)
         json_file.close()
+
+def delete_portfolio_item(data):
+    user_email = get_local_user_email()
+    competitions_name = data.get('competitions_name')
+    place = data.get('place')
+    datetime_ = data.get('datetime')
+    database_handler_.delete_portfolio_item(user_email, competitions_name, place, datetime_)
 

@@ -124,5 +124,10 @@ class DatabaseHandler:
             )
         )""", (director_email,)).fetchall()
 
+    def delete_portfolio_item(self, user_email, competitions_name, place, datetime_):
+        self.cursor.execute("""DELETE FROM portfolio WHERE email=? AND date=? AND competitions_name=? 
+                               AND place=?""", (user_email, datetime_, competitions_name, place))
+        self.conn.commit()
+
     def __del__(self):
         self.conn.close()

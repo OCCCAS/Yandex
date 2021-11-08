@@ -42,7 +42,7 @@ class PortfolioFeedItem(QWidget):
 
         _title = QTextBrowser()
         _title.setText(data.get('title'))
-        _title.setStyleSheet('background-color: rgba(0, 0, 0, 0);')
+        _title.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: unset;')
 
         _photo = QLabel()
         _photo.setAlignment(Qt.AlignCenter)
@@ -50,7 +50,7 @@ class PortfolioFeedItem(QWidget):
 
         _description = QTextBrowser()
         _description.setText(f"{data.get('place')}{data.get('date')}")
-        _description.setStyleSheet('background-color: rgba(0, 0, 0, 0);')
+        _description.setStyleSheet('background-color: rgba(0, 0, 0, 0); border: unset;')
 
         return {
             'title': _title,
