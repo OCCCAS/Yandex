@@ -128,6 +128,8 @@ def save_current_user_to_local(data: dict) -> None:
             }, json_file)
         json_file.close()
 
+    create_user_path()
+
 
 def edit_profile(name: str, surname: str, gender: str, birthday: int, photo: str) -> None:
     """Edit profile"""
@@ -172,8 +174,12 @@ def get_user_portfolio() -> Union[list, tuple]:
 def get_user_avatar_photo() -> str:
     """Get path to user avatar"""
     user_email = get_local_user_email()
-    return get_user_data_by_column('avatar_photo', user_email)
+    file_name = get_user_data_by_column('avatar_photo', user_email)
+        
+    if not os.path.exists(file_name):
+        file_name = config.DEFAULT_AVATAR_PATH
 
+    return file_name
 
 def get_full_user_data() -> Union[list, tuple]:
     """Get full user data"""

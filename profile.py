@@ -39,6 +39,9 @@ class ProfileTab(QWidget, Ui_Form):
         main_window.close()
         create_account_app.exec_()
 
+        if is_user_logged_in_local():
+            main_window.show()
+
     def exit_from_profile(self):
         """Exit from current profile"""
         ans = QMessageBox.question(self, 'Уверены?', 'Вы точно хотите выйти из своего профиля?')
